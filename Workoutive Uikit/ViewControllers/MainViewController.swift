@@ -25,9 +25,11 @@ class MainViewController: UIViewController {
         tv.showsVerticalScrollIndicator = false
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.backgroundColor = .clear
-        tv.rowHeight = UIScreen.main.bounds.height / 5
+        tv.rowHeight = UITableView.automaticDimension
+        tv.estimatedRowHeight = UIScreen.main.bounds.height / 5
         tv.separatorStyle = .none
         tv.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tv.register(DayTableViewCell.self, forCellReuseIdentifier: DayTableViewCell.cellId)
        
         return tv
     }()
@@ -65,7 +67,7 @@ private extension MainViewController{
         imageView.tintColor = .label
         self.navigationItem.titleView = imageView
          let btn = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(plusBtnTapped))
-        btn.tintColor = .systemGreen
+        btn.tintColor = UIColor.openGreen
         
         
         self.navigationItem.rightBarButtonItem = btn
@@ -83,7 +85,13 @@ extension MainViewController:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let day = dataManager.days[indexPath.row]
-        return UITableViewCell()
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: DayTableViewCell.cellId, for: indexPath) as! DayTableViewCell
+              
+        cell.configure(day: day)
+        
+              return cell
+      
     }
     
     
