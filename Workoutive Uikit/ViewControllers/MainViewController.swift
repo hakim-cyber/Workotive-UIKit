@@ -61,7 +61,7 @@ private extension MainViewController{
     func setupNavigationBar(){
         // seting up image
         let image : UIImage = UIImage(systemName:"dumbbell.fill")!
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         imageView.contentMode = .scaleAspectFit
         imageView.image = image
         imageView.tintColor = .label

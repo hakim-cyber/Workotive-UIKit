@@ -79,9 +79,10 @@ class DayTableViewCell: UITableViewCell {
         containerView.addSubview(DayText)
         containerView.addSubview(arrowImage)
        
+                                                        
         NSLayoutConstraint.activate([
             containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 5.3),
-            containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: day.id == 1 ? 40: 4),
+            containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: day.id == 1 ? 60: 4),
             containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -4),
             containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
             containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
