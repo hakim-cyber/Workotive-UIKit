@@ -29,7 +29,7 @@ class MainViewController: UIViewController {
                 sheet.preferredCornerRadius = 15
                 
                 
-                addView.setup()
+                
                
                 present(addView, animated: true)
             

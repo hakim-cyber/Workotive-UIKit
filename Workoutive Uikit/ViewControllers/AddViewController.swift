@@ -31,12 +31,22 @@ class AddViewController: UIViewController {
        
         return btn
     }()
-    
+    private lazy var selectedDayLabel:UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+      
+        lbl.font = .systemFont(ofSize: UIScreen.main.bounds.width / 13, weight: .bold)
+               lbl.textColor = .openGreen
+               lbl.numberOfLines = 1
+        
+        return lbl
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
        
+        setup()
         
         
         // Do any additional setup after loading the view.
@@ -58,12 +68,16 @@ extension AddViewController{
         doneBtnView.addTarget(self, action: #selector(doneBtnTapped), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(addBtnTapped), for: .touchUpInside)
         
-        self.view.addSubview(addButton)
+        selectedDayLabel.text = "Tuesday"
+        
+        
+        
+        self.view.addSubview(selectedDayLabel)
         self.view.addSubview(doneBtnView)
         
         NSLayoutConstraint.activate([
-            addButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            addButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            selectedDayLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            selectedDayLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
            
                                                         
             doneBtnView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 10),
