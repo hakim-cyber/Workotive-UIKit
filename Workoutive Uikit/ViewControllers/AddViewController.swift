@@ -19,6 +19,14 @@ class AddViewController: UIViewController {
         btn.titleLabel?.font = .systemFont(ofSize: 17,weight: .medium)
         return btn
     }()
+    private lazy var containerView:UIView = {
+        let view = UIView()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 10
+        return view
+        
+    }()
     private lazy var doneBtnView:UIButton = {
         let btn = UIButton()
        
@@ -34,17 +42,27 @@ class AddViewController: UIViewController {
     private lazy var selectedDayLabel:UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-      
         lbl.font = .systemFont(ofSize: UIScreen.main.bounds.width / 12, weight: .bold)
                lbl.textColor = .openGreen
                lbl.numberOfLines = 1
         
         return lbl
     }()
+    
+    private lazy var stackOfAddedDays:UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 16
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+        
        
         setup()
         
@@ -72,14 +90,17 @@ extension AddViewController{
         
         
         
-        self.view.addSubview(selectedDayLabel)
+        self.view.addSubview(containerView)
         self.view.addSubview(doneBtnView)
+       
+        
         
         NSLayoutConstraint.activate([
-            selectedDayLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            selectedDayLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            
+            containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
            
-                                                        
+            
             doneBtnView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 10),
             doneBtnView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
         ])
