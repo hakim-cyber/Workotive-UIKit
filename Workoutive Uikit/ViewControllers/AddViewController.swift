@@ -35,7 +35,7 @@ class AddViewController: UIViewController {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
       
-        lbl.font = .systemFont(ofSize: UIScreen.main.bounds.width / 13, weight: .bold)
+        lbl.font = .systemFont(ofSize: UIScreen.main.bounds.width / 12, weight: .bold)
                lbl.textColor = .openGreen
                lbl.numberOfLines = 1
         
@@ -68,7 +68,7 @@ extension AddViewController{
         doneBtnView.addTarget(self, action: #selector(doneBtnTapped), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(addBtnTapped), for: .touchUpInside)
         
-        selectedDayLabel.text = "Tuesday"
+        selectedDayLabel.text = "Sunday"
         
         
         
