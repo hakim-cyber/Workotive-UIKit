@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     }
   
     @objc func plusBtnTapped(){
-         var addView = AddViewController()
+        var addView = AddViewController()
        
         
        
@@ -29,8 +29,10 @@ class MainViewController: UIViewController {
                 sheet.preferredCornerRadius = 15
                 
                 
-                
+                addView.setup()
+               
                 present(addView, animated: true)
+            
                 
             }
         

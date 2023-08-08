@@ -36,7 +36,7 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        setup()
+       
         
         
         // Do any additional setup after loading the view.
