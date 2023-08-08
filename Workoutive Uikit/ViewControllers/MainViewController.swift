@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
                 
                 sheet.detents = [.large()]
                 sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-                sheet.prefersGrabberVisible = true
+                sheet.prefersGrabberVisible = false
                 sheet.preferredCornerRadius = 15
                 
                 
