@@ -96,7 +96,7 @@ extension AddViewController{
         
         
         NSLayoutConstraint.activate([
-            
+            containerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.12),
             containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
            
