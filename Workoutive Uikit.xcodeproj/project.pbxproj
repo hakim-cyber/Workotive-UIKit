@@ -11,6 +11,7 @@
 		0805D3492A80F49000262718 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D3482A80F49000262718 /* Structs.swift */; };
 		0805D34B2A80F75800262718 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D34A2A80F75800262718 /* DayTableViewCell.swift */; };
 		0805D34E2A81615500262718 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D34D2A81615500262718 /* Colors.swift */; };
+		0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845E02D2A8281FC00B9356D /* AddViewController.swift */; };
 		08DFD9352A802E9A007C596E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DFD9342A802E9A007C596E /* AppDelegate.swift */; };
 		08DFD9372A802E9A007C596E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DFD9362A802E9A007C596E /* SceneDelegate.swift */; };
 		08DFD9392A802E9A007C596E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DFD9382A802E9A007C596E /* MainViewController.swift */; };
@@ -23,6 +24,7 @@
 		0805D3482A80F49000262718 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		0805D34A2A80F75800262718 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		0805D34D2A81615500262718 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0845E02D2A8281FC00B9356D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		08DFD9312A802E9A007C596E /* Workoutive Uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Workoutive Uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08DFD9342A802E9A007C596E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08DFD9362A802E9A007C596E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				08DFD9382A802E9A007C596E /* MainViewController.swift */,
+				0845E02D2A8281FC00B9356D /* AddViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			files = (
 				08DFD9392A802E9A007C596E /* MainViewController.swift in Sources */,
 				0805D3472A80F27000262718 /* DataManager.swift in Sources */,
+				0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */,
 				0805D3492A80F49000262718 /* Structs.swift in Sources */,
 				0805D34E2A81615500262718 /* Colors.swift in Sources */,
 				08DFD9352A802E9A007C596E /* AppDelegate.swift in Sources */,
@@ -322,7 +326,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -353,7 +357,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

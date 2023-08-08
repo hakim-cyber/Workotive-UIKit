@@ -17,7 +17,23 @@ class MainViewController: UIViewController {
     }
   
     @objc func plusBtnTapped(){
-            
+         var addView = AddViewController()
+       
+        
+       
+            if let sheet = addView.sheetPresentationController{
+                
+                sheet.detents = [.medium(),.large()]
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+                sheet.prefersGrabberVisible = true
+                sheet.preferredCornerRadius = 15
+                
+                
+                
+                present(addView, animated: true)
+                
+            }
+        
   }
     
     private lazy var daysTableView:UITableView = {
