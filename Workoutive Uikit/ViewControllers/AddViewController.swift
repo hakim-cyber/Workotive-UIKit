@@ -25,7 +25,18 @@ class AddViewController: UIViewController {
         btn.setTitle("Add Day", for: .normal)
         btn.setTitleColor(.openGreen, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 17,weight: .medium)
+        
         return btn
+    }()
+    
+    private lazy var newDayPicker:UIPickerView = {
+        let picker = UIPickerView()
+        
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
+        return picker
     }()
     private lazy var containerView:UIView = {
         let view = UIView()
