@@ -8,7 +8,15 @@
 import UIKit
 
 class AddViewController: UIViewController {
+    private lazy var vm = AddDayVM()
+    var newDays:([Day])->Void = {_ in }
     
+    func bind(callBack: @escaping ([Day])->Void){
+        newDays = callBack
+    }
+    func setupViewModel(days:[Day]){
+        self.vm.setup(days: days)
+    }
     private lazy var addButton:UIButton = {
         let btn = UIButton()
         
@@ -27,6 +35,7 @@ class AddViewController: UIViewController {
         return view
         
     }()
+   
     private lazy var doneBtnView:UIButton = {
         let btn = UIButton()
        
@@ -73,10 +82,15 @@ class AddViewController: UIViewController {
     
 
     @objc func addBtnTapped(){
-       
+        newDays([Day(id: 7, muscles: [])])
+        
+        
     }
     @objc func doneBtnTapped(){
+        
         self.dismiss(animated: true)
+        
+       
     }
 
 }

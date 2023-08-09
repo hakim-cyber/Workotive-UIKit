@@ -20,4 +20,9 @@ class DataManager:ObservableObject{
        print("loaded")
        return days
     }
+    func addDays(days:[Day]){
+        for day in days {
+            self.days.append(day)
+        }
+    }
 }

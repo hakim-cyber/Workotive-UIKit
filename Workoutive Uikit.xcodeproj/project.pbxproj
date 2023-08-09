@@ -11,6 +11,7 @@
 		0805D3492A80F49000262718 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D3482A80F49000262718 /* Structs.swift */; };
 		0805D34B2A80F75800262718 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D34A2A80F75800262718 /* DayTableViewCell.swift */; };
 		0805D34E2A81615500262718 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D34D2A81615500262718 /* Colors.swift */; };
+		083F8E6F2A841FFE00D9CE9D /* AddDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */; };
 		0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845E02D2A8281FC00B9356D /* AddViewController.swift */; };
 		08DFD9352A802E9A007C596E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DFD9342A802E9A007C596E /* AppDelegate.swift */; };
 		08DFD9372A802E9A007C596E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DFD9362A802E9A007C596E /* SceneDelegate.swift */; };
@@ -24,6 +25,7 @@
 		0805D3482A80F49000262718 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		0805D34A2A80F75800262718 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		0805D34D2A81615500262718 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDayViewModel.swift; sourceTree = "<group>"; };
 		0845E02D2A8281FC00B9356D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		08DFD9312A802E9A007C596E /* Workoutive Uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Workoutive Uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08DFD9342A802E9A007C596E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				0805D3462A80F27000262718 /* DataManager.swift */,
+				083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				0805D3492A80F49000262718 /* Structs.swift in Sources */,
 				0805D34E2A81615500262718 /* Colors.swift in Sources */,
 				08DFD9352A802E9A007C596E /* AppDelegate.swift in Sources */,
+				083F8E6F2A841FFE00D9CE9D /* AddDayViewModel.swift in Sources */,
 				0805D34B2A80F75800262718 /* DayTableViewCell.swift in Sources */,
 				08DFD9372A802E9A007C596E /* SceneDelegate.swift in Sources */,
 			);

@@ -8,6 +8,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    private lazy var dataManager = DataManager()
 
 
     override func viewDidLoad() {
@@ -19,8 +20,14 @@ class MainViewController: UIViewController {
     @objc func plusBtnTapped(){
         var addView = AddViewController()
        
-        
-       
+        addView.bind{[weak self] days in
+           
+            self?.dataManager.addDays(days: days)
+            self?.daysTableView.reloadData()
+            
+            
+        }
+        addView.setupViewModel(days: dataManager.days)
             if let sheet = addView.sheetPresentationController{
                 
                 sheet.detents = [.large()]
@@ -51,7 +58,7 @@ class MainViewController: UIViewController {
        
         return tv
     }()
-    private lazy var dataManager = DataManager()
+   
 }
 
 
