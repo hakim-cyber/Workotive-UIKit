@@ -122,9 +122,9 @@ class AddViewController: UIViewController {
         return lbl
     }()
     
-    private lazy var stackOfAddedDays:UIStackView = {
+    private lazy var stackOfAll:UIStackView = {
         let stackView = UIStackView()
-        stackView.alignment = .leading
+        stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 16
         stackView.axis = .vertical
