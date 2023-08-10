@@ -96,7 +96,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 8
-        view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.1)
+        view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.05)
         return view
         
     }()
