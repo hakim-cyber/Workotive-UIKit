@@ -95,8 +95,8 @@ class AddViewController: UIViewController, UITableViewDelegate {
         let view = UIView()
         
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
-        view.backgroundColor = .brown
+        view.layer.cornerRadius = 8
+        view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.1)
         return view
         
     }()
@@ -129,7 +129,6 @@ class AddViewController: UIViewController, UITableViewDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 16
         stackView.axis = .vertical
-        
         return stackView
     }()
     
@@ -188,22 +187,19 @@ extension AddViewController{
        
         self.view.addSubview(doneBtnView)
         self.view.addSubview(containerView)
-        self.containerView.addSubview(daysTableView)
+       
         
         
         
         NSLayoutConstraint.activate([
            
             containerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.12),
-            containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 1.52),
+            containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 1.62),
             containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             
            
-            daysTableView.topAnchor.constraint(equalTo: self.containerView.safeAreaLayoutGuide.topAnchor),
-                       daysTableView.bottomAnchor.constraint(equalTo: self.containerView.safeAreaLayoutGuide.bottomAnchor),
-                       daysTableView.leadingAnchor.constraint(equalTo: self.containerView.safeAreaLayoutGuide.leadingAnchor),
-                       daysTableView.trailingAnchor.constraint(equalTo: self.containerView.safeAreaLayoutGuide.trailingAnchor),
+           
             
             doneBtnView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 10),
             doneBtnView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
