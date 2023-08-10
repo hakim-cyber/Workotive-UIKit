@@ -20,6 +20,14 @@ class AddViewController: UIViewController {
         self.vm.setup(days: days)
         
     }
+    lazy var datePicker:UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .time
+        datePicker.preferredDatePickerStyle = .wheels
+       
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        return datePicker
+    }()
     
     lazy var segmentedControl:UISegmentedControl = {
         let items = self.vm.availibleDays.map{int in
@@ -162,7 +170,7 @@ extension AddViewController{
         
         self.view.addSubview(containerView)
         self.view.addSubview(doneBtnView)
-        self.view.addSubview(segmentedControl)
+        self.view.addSubview(datePicker)
         
         
         NSLayoutConstraint.activate([
@@ -170,9 +178,9 @@ extension AddViewController{
             containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
            
-            segmentedControl.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor,constant: -15),
-            segmentedControl.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor , constant: 15),
-            segmentedControl.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor),
+            datePicker.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor,constant: -15),
+            datePicker.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor , constant: 15),
+            datePicker.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor),
             
             doneBtnView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 10),
             doneBtnView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
