@@ -47,6 +47,8 @@ class AddViewController: UIViewController {
         segmentedControl.addTarget(self, action: #selector(suitDidChange), for: .valueChanged)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.selectedSegmentTintColor = .openGreen
+        segmentedControl.apportionsSegmentWidthsByContent = false
+       
        
       
     
@@ -57,6 +59,8 @@ class AddViewController: UIViewController {
         let index = sgmtedControl.selectedSegmentIndex
         
         self.vm.pickedNewDay = self.vm.availibleDays[index]
+        
+        
     }
     private lazy var addButton:UIButton = {
         let btn = UIButton()
