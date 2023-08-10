@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddViewController: UIViewController {
+class AddViewController: UIViewController, UITableViewDelegate {
     private lazy var vm = AddDayVM()
     var newDays:([Day])->Void = {_ in }
     
@@ -96,6 +96,7 @@ class AddViewController: UIViewController {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 10
+        view.backgroundColor = .brown
         return view
         
     }()
@@ -131,11 +132,26 @@ class AddViewController: UIViewController {
         
         return stackView
     }()
+    
+    private lazy var daysTableView:UITableView = {
+        let tv = UITableView()
+        tv.showsVerticalScrollIndicator = false
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.separatorStyle = .none
+        tv.backgroundColor = .clear
+        tv.allowsSelection = false
+        tv.register(UITableViewCell.self, forCellReuseIdentifier: "daysTableViewCell")
+       
+       
+        return tv
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         segmentedControl.selectedSegmentIndex = 0
+        
+        print(self.vm.days.count)
        
         setup()
         
@@ -165,26 +181,72 @@ extension AddViewController{
         addButton.addTarget(self, action: #selector(addBtnTapped), for: .touchUpInside)
         
         selectedDayLabel.text = "Sunday"
-    
+        daysTableView.dataSource = self
+       
+        daysTableView.delegate = self
         
-        
-        self.view.addSubview(containerView)
+       
         self.view.addSubview(doneBtnView)
-        self.view.addSubview(datePicker)
+        self.view.addSubview(containerView)
+        self.containerView.addSubview(daysTableView)
+        
         
         
         NSLayoutConstraint.activate([
+           
             containerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.12),
+            containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 1.52),
             containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            
            
-            datePicker.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor,constant: -15),
-            datePicker.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor , constant: 15),
-            datePicker.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor),
+            daysTableView.topAnchor.constraint(equalTo: self.containerView.safeAreaLayoutGuide.topAnchor),
+                       daysTableView.bottomAnchor.constraint(equalTo: self.containerView.safeAreaLayoutGuide.bottomAnchor),
+                       daysTableView.leadingAnchor.constraint(equalTo: self.containerView.safeAreaLayoutGuide.leadingAnchor),
+                       daysTableView.trailingAnchor.constraint(equalTo: self.containerView.safeAreaLayoutGuide.trailingAnchor),
             
             doneBtnView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 10),
             doneBtnView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
         ])
     }
     
+}
+
+
+
+extension AddViewController:UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.vm.days.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let day = self.vm.days[indexPath.row]
+        
+        let cell = daysTableView.dequeueReusableCell(withIdentifier: "daysTableViewCell",for: indexPath)
+        let label = UILabel()
+        switch day.id{
+        case 1:
+            cell.textLabel?.text = "Mon"
+        case 2:
+            cell.textLabel?.text = "Tue"
+        case 3:
+            cell.textLabel?.text = "Wed"
+        case 4:
+            cell.textLabel?.text = "Th"
+        case 5:
+            cell.textLabel?.text = "Fri"
+        case 6:
+            cell.textLabel?.text = "Sat"
+        default:
+            cell.textLabel?.text = "Sun"
+        }
+        cell.textLabel?.textColor = .openGreen
+        cell.backgroundColor = .clear
+    
+              return cell
+      
+    }
+    
+    
+
 }
