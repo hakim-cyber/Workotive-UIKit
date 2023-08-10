@@ -21,7 +21,7 @@ class AddDayVM:ObservableObject{
         availibleDays = newAvailible
         self.days = days
         
-        
+        self.pickedNewDay = self.availibleDays[0]
         
     }
 }

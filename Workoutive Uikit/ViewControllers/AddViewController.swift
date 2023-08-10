@@ -11,11 +11,52 @@ class AddViewController: UIViewController {
     private lazy var vm = AddDayVM()
     var newDays:([Day])->Void = {_ in }
     
+    
+    
     func bind(callBack: @escaping ([Day])->Void){
         newDays = callBack
     }
     func setupViewModel(days:[Day]){
         self.vm.setup(days: days)
+        
+    }
+    
+    lazy var segmentedControl:UISegmentedControl = {
+        let items = self.vm.availibleDays.map{int in
+            
+                switch int {
+                case 1:
+                    return "Mon"
+                case 2:
+                    return "Tue"
+                case 3:
+                    return "Wed"
+                case 4:
+                    return "Thu"
+                case 5:
+                    return "Fri"
+                case 6:
+                    return "Sat"
+                default:
+                    return "Sun"
+                }
+            
+           
+        }
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.addTarget(self, action: #selector(suitDidChange), for: .valueChanged)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.selectedSegmentTintColor = .openGreen
+       
+      
+    
+        
+        return segmentedControl
+    }()
+    @objc func suitDidChange(_ sgmtedControl:UISegmentedControl){
+        let index = sgmtedControl.selectedSegmentIndex
+        
+        self.vm.pickedNewDay = self.vm.availibleDays[index]
     }
     private lazy var addButton:UIButton = {
         let btn = UIButton()
@@ -82,7 +123,7 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        
+        segmentedControl.selectedSegmentIndex = 0
        
         setup()
         
@@ -112,12 +153,12 @@ extension AddViewController{
         addButton.addTarget(self, action: #selector(addBtnTapped), for: .touchUpInside)
         
         selectedDayLabel.text = "Sunday"
-        
+    
         
         
         self.view.addSubview(containerView)
         self.view.addSubview(doneBtnView)
-       
+        self.view.addSubview(segmentedControl)
         
         
         NSLayoutConstraint.activate([
@@ -125,6 +166,9 @@ extension AddViewController{
             containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
            
+            segmentedControl.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor,constant: -15),
+            segmentedControl.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor , constant: 15),
+            segmentedControl.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor),
             
             doneBtnView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 10),
             doneBtnView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
