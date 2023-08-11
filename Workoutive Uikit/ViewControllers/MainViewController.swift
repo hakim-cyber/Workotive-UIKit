@@ -109,7 +109,8 @@ extension MainViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let day = dataManager.days[indexPath.row]
+        
+        let day = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: DayTableViewCell.cellId, for: indexPath) as! DayTableViewCell
               

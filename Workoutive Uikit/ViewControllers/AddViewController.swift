@@ -174,10 +174,16 @@ class AddViewController: UIViewController, UITableViewDelegate {
     @objc func addBtnTapped(){
        if self.vm.availibleDays.count > 0 {
             let day = Day(id: self.vm.pickedNewDay, muscles: [])
+           
+           if let index = vm.availibleDays.firstIndex(where: {$0 == vm.pickedNewDay}){
+               self.segmentedControl.removeSegment(at: index, animated: true)
+           }
             
             self.newDays(day)
            self.vm.addedDay(day: day)
-           
+           if vm.availibleDays.count > 0{
+               segmentedControl.selectedSegmentIndex = 0
+           }
           
            self.daysTableView.reloadData()
            
