@@ -175,7 +175,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
         // Do any additional setup after loading the view.
         
     }
-    override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated); DispatchQueue.main.async { self.daysTableView.reloadData() }}
+   
     
 
     @objc func addBtnTapped(){
@@ -194,7 +194,8 @@ class AddViewController: UIViewController, UITableViewDelegate {
                
                
            }
-          viewWillAppear(true)
+           self.daysTableView.reloadData()
+           
            
            
           
@@ -275,7 +276,7 @@ extension AddViewController{
             stackOfAll.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
             stackOfAll.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -16),
             
-            daysTableView.heightAnchor.constraint(equalToConstant: CGFloat(estimatedHeightTableView * Int(self.view.bounds.height) / 22)),
+            daysTableView.heightAnchor.constraint(equalToConstant: CGFloat(7 * Int(self.view.bounds.height) / 22) ),
             daysTableView.bottomAnchor.constraint(equalTo: self.stackOfAll.bottomAnchor),
             daysTableView.leadingAnchor.constraint(equalTo: self.stackOfAll.leadingAnchor),
             daysTableView.trailingAnchor.constraint(equalTo: self.stackOfAll.trailingAnchor),
