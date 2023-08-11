@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
             if let sheet = addView.sheetPresentationController{
                 
                 sheet.detents = [.large()]
-                sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
                 sheet.prefersGrabberVisible = false
                 sheet.preferredCornerRadius = 15
                 

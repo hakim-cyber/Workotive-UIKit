@@ -77,8 +77,8 @@ class AddViewController: UIViewController, UITableViewDelegate {
         
         btn.setTitle("Add Day", for: .normal)
         btn.setTitleColor(.openGreen, for: .normal)
-        btn.titleLabel?.font = .systemFont(ofSize: 17,weight: .medium)
-        
+        btn.titleLabel?.font = .systemFont(ofSize: 20,weight: .bold)
+       
         return btn
     }()
     
@@ -195,6 +195,7 @@ extension AddViewController{
        
         daysTableView.delegate = self
         
+        let estimatedHeightTableView = daysTableView.numberOfRows(inSection: 0)
        
         
         
@@ -226,9 +227,10 @@ extension AddViewController{
             stackOfAll.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
             stackOfAll.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -16),
             
-            daysTableView.topAnchor.constraint(equalTo: self.addButton.bottomAnchor, constant: 16),
+            daysTableView.heightAnchor.constraint(equalToConstant: CGFloat(estimatedHeightTableView * Int(self.view.bounds.height) / 20)),
+            daysTableView.topAnchor.constraint(equalTo: self.addButton.bottomAnchor,constant: 10),
             daysTableView.bottomAnchor.constraint(equalTo: self.stackOfAll.bottomAnchor),
-            daysTableView.leadingAnchor.constraint(equalTo: self.stackOfAll.leadingAnchor),
+            daysTableView.leadingAnchor.constraint(equalTo: self.reminderLabel.leadingAnchor),
             daysTableView.trailingAnchor.constraint(equalTo: self.stackOfAll.trailingAnchor),
             
             addButton.centerXAnchor.constraint(equalTo: self.stackOfAll.centerXAnchor),
@@ -255,23 +257,25 @@ extension AddViewController:UITableViewDataSource{
         let label = UILabel()
         switch day.id{
         case 1:
-            cell.textLabel?.text = "Mon"
+            cell.textLabel?.text = "Monday"
         case 2:
-            cell.textLabel?.text = "Tue"
+            cell.textLabel?.text = "Tuesday"
         case 3:
-            cell.textLabel?.text = "Wed"
+            cell.textLabel?.text = "Wednesday"
         case 4:
-            cell.textLabel?.text = "Th"
+            cell.textLabel?.text = "Thursday"
         case 5:
-            cell.textLabel?.text = "Fri"
+            cell.textLabel?.text = "Friday"
         case 6:
-            cell.textLabel?.text = "Sat"
+            cell.textLabel?.text = "Saturday"
         default:
-            cell.textLabel?.text = "Sun"
+            cell.textLabel?.text = "Sunday"
         }
         cell.textLabel?.textColor = .openGreen
         cell.backgroundColor = .clear
-    
+        cell.textLabel?.font = UIFont.systemFont(ofSize:  UIScreen.main.bounds.width / 24, weight: .medium)
+        cell.heightAnchor.constraint(equalToConstant: self.view.bounds.height / 20).isActive = true
+        cell.textLabel?.textAlignment = .left
               return cell
       
     }
