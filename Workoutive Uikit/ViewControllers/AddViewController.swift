@@ -57,7 +57,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
         segmentedControl.selectedSegmentTintColor = .openGreen
         segmentedControl.apportionsSegmentWidthsByContent = false
        
-       
+        
       
     
         
@@ -180,7 +180,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
            
           
            self.daysTableView.reloadData()
-          
+           
         }
         
     }
