@@ -187,7 +187,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
                
                
            }
-           
+           self.daysTableView.reloadData()
            if self.vm.availibleDays.isEmpty{
             
               
@@ -198,6 +198,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
               
            }
           
+           
             
        }
         
