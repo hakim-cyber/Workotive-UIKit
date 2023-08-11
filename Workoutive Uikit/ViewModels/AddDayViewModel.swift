@@ -20,8 +20,21 @@ class AddDayVM:ObservableObject{
             !days.contains(where: {$0.id == i}) })
         availibleDays = newAvailible
         self.days = days
+        if availibleDays.count > 0{
+            self.pickedNewDay = availibleDays[0]
+        }
+      
         
-        self.pickedNewDay = self.availibleDays[0]
-        
+    }
+    func addedDay(day:Day){
+       
+            self.availibleDays.removeAll(where: {$0 == day.id})
+            self.days.append(day)
+            self.pickedDate = Date()
+        if availibleDays.count > 0{
+            self.pickedNewDay = availibleDays[0]
+        }
+    
+       
     }
 }

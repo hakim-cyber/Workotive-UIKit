@@ -9,11 +9,11 @@ import UIKit
 
 class AddViewController: UIViewController, UITableViewDelegate {
     private lazy var vm = AddDayVM()
-    var newDays:([Day])->Void = {_ in }
+    var newDays:(Day)->Void = {_ in }
     
     
     
-    func bind(callBack: @escaping ([Day])->Void){
+    func bind(callBack: @escaping (Day)->Void){
         newDays = callBack
     }
     func setupViewModel(days:[Day]){
@@ -172,8 +172,16 @@ class AddViewController: UIViewController, UITableViewDelegate {
     
 
     @objc func addBtnTapped(){
-        
-        
+       if self.vm.availibleDays.count > 0 {
+            let day = Day(id: self.vm.pickedNewDay, muscles: [])
+            
+            self.newDays(day)
+           self.vm.addedDay(day: day)
+           
+          
+           self.daysTableView.reloadData()
+          
+        }
         
     }
     @objc func doneBtnTapped(){
@@ -223,7 +231,7 @@ extension AddViewController{
             daysOfWeek.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
             
             stackOfAll.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 16),
-            stackOfAll.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: -16),
+            stackOfAll.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor),
             stackOfAll.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
             stackOfAll.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -16),
             
@@ -240,6 +248,7 @@ extension AddViewController{
             doneBtnView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
         ])
     }
+   
     
 }
 
