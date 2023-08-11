@@ -203,7 +203,7 @@ extension AddViewController{
        
         daysTableView.delegate = self
         
-        let estimatedHeightTableView = daysTableView.numberOfRows(inSection: 0)
+        let estimatedHeightTableView = self.vm.days.count
        
         
         
@@ -235,7 +235,7 @@ extension AddViewController{
             stackOfAll.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
             stackOfAll.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -16),
             
-            daysTableView.heightAnchor.constraint(equalToConstant: CGFloat(estimatedHeightTableView * Int(self.view.bounds.height) / 20)),
+            daysTableView.heightAnchor.constraint(equalToConstant: CGFloat(estimatedHeightTableView * Int(self.view.bounds.height) / 22)),
             daysTableView.topAnchor.constraint(equalTo: self.addButton.bottomAnchor,constant: 10),
             daysTableView.bottomAnchor.constraint(equalTo: self.stackOfAll.bottomAnchor),
             daysTableView.leadingAnchor.constraint(equalTo: self.reminderLabel.leadingAnchor),
