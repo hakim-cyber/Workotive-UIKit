@@ -11,7 +11,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
     private lazy var vm = AddDayVM()
     var newDays:(Day)->Void = {_ in }
     
-    
+
     
     func bind(callBack: @escaping (Day)->Void){
         newDays = callBack
@@ -151,6 +151,8 @@ class AddViewController: UIViewController, UITableViewDelegate {
         let tv = UITableView()
         tv.showsVerticalScrollIndicator = false
         tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.rowHeight = UITableView.automaticDimension
+        tv.estimatedRowHeight = UIScreen.main.bounds.height / 22
         tv.separatorStyle = .none
         tv.backgroundColor = .clear
         tv.allowsSelection = false
@@ -173,6 +175,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
         // Do any additional setup after loading the view.
         
     }
+    override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated); DispatchQueue.main.async { self.daysTableView.reloadData() }}
     
 
     @objc func addBtnTapped(){
@@ -191,7 +194,11 @@ class AddViewController: UIViewController, UITableViewDelegate {
                
                
            }
-           self.daysTableView.reloadData()
+          viewWillAppear(true)
+           
+           
+          
+          
            if self.vm.availibleDays.isEmpty{
             
               
@@ -243,9 +250,13 @@ extension AddViewController{
             stackOfAll.addArrangedSubview(addButton)
         }
         stackOfAll.addArrangedSubview(daysTableView)
-        
+       
         addButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive =  vm.availibleDays.count > 0
-        daysTableView.topAnchor.constraint(equalTo: self.addButton.bottomAnchor,constant: 10).isActive = vm.availibleDays.count > 0
+        if vm.availibleDays.count > 0{
+            daysTableView.topAnchor.constraint(equalTo: self.addButton.bottomAnchor,constant: 10).isActive = true
+        }else{
+            daysTableView.topAnchor.constraint(equalTo: self.stackOfAll.topAnchor,constant: 10).isActive = true
+        }
        
         NSLayoutConstraint.activate([
             
@@ -315,10 +326,10 @@ extension AddViewController:UITableViewDataSource{
         cell.textLabel?.font = UIFont.systemFont(ofSize:  UIScreen.main.bounds.width / 24, weight: .medium)
         cell.heightAnchor.constraint(equalToConstant: self.view.bounds.height / 20).isActive = true
         cell.textLabel?.textAlignment = .left
+        cell.layoutIfNeeded()
               return cell
       
     }
-    
-    
+
 
 }
