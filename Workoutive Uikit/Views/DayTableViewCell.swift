@@ -68,7 +68,7 @@ class DayTableViewCell: UITableViewCell {
             DayText.text = "Sunday"
         }
         
-        
+        self.containerView.isUserInteractionEnabled = true
         
         arrowImage.image = UIImage(systemName: "arrow.right")
         arrowImage.tintColor = .black

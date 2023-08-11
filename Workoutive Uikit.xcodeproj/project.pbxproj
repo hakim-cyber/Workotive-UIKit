@@ -18,6 +18,7 @@
 		08DFD9392A802E9A007C596E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DFD9382A802E9A007C596E /* MainViewController.swift */; };
 		08DFD93E2A802E9D007C596E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08DFD93D2A802E9D007C596E /* Assets.xcassets */; };
 		08DFD9412A802E9D007C596E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08DFD93F2A802E9D007C596E /* LaunchScreen.storyboard */; };
+		08ED33D02A86D1C900EABE44 /* MuscleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08ED33CF2A86D1C900EABE44 /* MuscleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		08DFD93D2A802E9D007C596E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08DFD9402A802E9D007C596E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08DFD9422A802E9D007C596E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08ED33CF2A86D1C900EABE44 /* MuscleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			children = (
 				08DFD9382A802E9A007C596E /* MainViewController.swift */,
 				0845E02D2A8281FC00B9356D /* AddViewController.swift */,
+				08ED33CF2A86D1C900EABE44 /* MuscleViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08ED33D02A86D1C900EABE44 /* MuscleViewController.swift in Sources */,
 				08DFD9392A802E9A007C596E /* MainViewController.swift in Sources */,
 				0805D3472A80F27000262718 /* DataManager.swift in Sources */,
 				0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */,

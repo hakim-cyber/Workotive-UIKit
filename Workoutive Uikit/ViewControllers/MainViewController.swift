@@ -55,7 +55,8 @@ class MainViewController: UIViewController {
         tv.separatorStyle = .none
         tv.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tv.register(DayTableViewCell.self, forCellReuseIdentifier: DayTableViewCell.cellId)
-       
+        tv.allowsSelection = true
+        
         return tv
     }()
    
@@ -69,6 +70,7 @@ private extension MainViewController{
         setupNavigationBar()
         
         daysTableView.dataSource = self
+        daysTableView.delegate = self
         
         
         self.view.addSubview(daysTableView)
@@ -103,7 +105,7 @@ private extension MainViewController{
 }
 
 
-extension MainViewController:UITableViewDataSource{
+extension MainViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataManager.days.count
     }
@@ -113,13 +115,25 @@ extension MainViewController:UITableViewDataSource{
         let day = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: DayTableViewCell.cellId, for: indexPath) as! DayTableViewCell
-              
+        cell.selectionStyle = .none
+        cell.userInteractionEnabledWhileDragging = true
+        cell.isUserInteractionEnabled = true
         cell.configure(day: day)
         
               return cell
       
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+            print("selected")
+            let vc = MuscleViewController()
+            
+            vc.selectedDay = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        
+    }
     
 
 }
