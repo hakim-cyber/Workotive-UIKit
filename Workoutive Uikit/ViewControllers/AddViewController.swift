@@ -172,6 +172,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
     
 
     @objc func addBtnTapped(){
+        
        if self.vm.availibleDays.count > 0 {
             let day = Day(id: self.vm.pickedNewDay, muscles: [])
            
@@ -181,13 +182,25 @@ class AddViewController: UIViewController, UITableViewDelegate {
             
             self.newDays(day)
            self.vm.addedDay(day: day)
-           if vm.availibleDays.count > 0{
+           if self.vm.availibleDays.count > 0{
                segmentedControl.selectedSegmentIndex = 0
+               
+               
+           }
+           
+           if self.vm.availibleDays.isEmpty{
+            
+              
+               self.segmentedControl.isHidden = true
+               self.reminderLabel.isHidden = true
+               self.datePicker.isHidden = true
+               self.addButton.isHidden = true
+              
            }
           
-           self.daysTableView.reloadData()
-           
-        }
+            
+       }
+        
         
     }
     @objc func doneBtnTapped(){
@@ -204,7 +217,6 @@ extension AddViewController{
         doneBtnView.addTarget(self, action: #selector(doneBtnTapped), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(addBtnTapped), for: .touchUpInside)
         
-        
         daysTableView.dataSource = self
        
         daysTableView.delegate = self
@@ -212,18 +224,24 @@ extension AddViewController{
         let estimatedHeightTableView = self.vm.days.count
        
         
-        
+      
         self.view.addSubview(doneBtnView)
         self.view.addSubview(containerView)
+        
         self.view.addSubview(daysOfWeek)
         self.containerView.addSubview(stackOfAll)
-       
-        stackOfAll.addArrangedSubview(segmentedControl)
-        stackOfAll.addArrangedSubview(reminderLabel)
-        stackOfAll.addArrangedSubview(datePicker)
-        stackOfAll.addArrangedSubview(addButton)
+        
+        if vm.availibleDays.count > 0{
+            stackOfAll.addArrangedSubview(segmentedControl)
+            stackOfAll.addArrangedSubview(reminderLabel)
+            stackOfAll.addArrangedSubview(datePicker)
+            stackOfAll.addArrangedSubview(addButton)
+        }
         stackOfAll.addArrangedSubview(daysTableView)
         
+        addButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive =  vm.availibleDays.count > 0
+        daysTableView.topAnchor.constraint(equalTo: self.addButton.bottomAnchor,constant: 10).isActive = vm.availibleDays.count > 0
+       
         NSLayoutConstraint.activate([
             
             
@@ -242,17 +260,18 @@ extension AddViewController{
             stackOfAll.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -16),
             
             daysTableView.heightAnchor.constraint(equalToConstant: CGFloat(estimatedHeightTableView * Int(self.view.bounds.height) / 22)),
-            daysTableView.topAnchor.constraint(equalTo: self.addButton.bottomAnchor,constant: 10),
             daysTableView.bottomAnchor.constraint(equalTo: self.stackOfAll.bottomAnchor),
-            daysTableView.leadingAnchor.constraint(equalTo: self.reminderLabel.leadingAnchor),
+            daysTableView.leadingAnchor.constraint(equalTo: self.stackOfAll.leadingAnchor),
             daysTableView.trailingAnchor.constraint(equalTo: self.stackOfAll.trailingAnchor),
             
-            addButton.centerXAnchor.constraint(equalTo: self.stackOfAll.centerXAnchor),
+          
+              
             
             
             doneBtnView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 10),
             doneBtnView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
         ])
+       
     }
    
     
