@@ -30,6 +30,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
     }()
     
     lazy var segmentedControl:UISegmentedControl = {
+        
         let items = self.vm.availibleDays.map{int in
             
                 switch int {
@@ -56,8 +57,11 @@ class AddViewController: UIViewController, UITableViewDelegate {
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.selectedSegmentTintColor = .openGreen
         segmentedControl.apportionsSegmentWidthsByContent = false
+        let atributeBlack =  [NSAttributedString.Key.foregroundColor: UIColor.black]
        
         
+        segmentedControl.setTitleTextAttributes(atributeBlack , for: .selected)
+      
       
     
         
