@@ -51,7 +51,7 @@ class MainViewController: UIViewController {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.backgroundColor = .clear
         tv.rowHeight = UITableView.automaticDimension
-        tv.estimatedRowHeight = UIScreen.main.bounds.height / 5
+        tv.estimatedRowHeight = UIScreen.main.bounds.height / 5.45
         tv.separatorStyle = .none
         tv.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tv.register(DayTableViewCell.self, forCellReuseIdentifier: DayTableViewCell.cellId)
@@ -71,15 +71,15 @@ private extension MainViewController{
         
         daysTableView.dataSource = self
         daysTableView.delegate = self
-        
+        self.daysTableView.contentInset = UIEdgeInsets(top: 70,left: 0,bottom: 35,right: 0)
         
         self.view.addSubview(daysTableView)
         NSLayoutConstraint.activate([
             daysTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            daysTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            daysTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             daysTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             daysTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        
+            
         
         ])
     }

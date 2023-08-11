@@ -82,11 +82,11 @@ class DayTableViewCell: UITableViewCell {
        
                                                         
         NSLayoutConstraint.activate([
-            containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 5.3),
+            containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 5.45),
             containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor,constant: 6),
             containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -2),
-            containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
-            containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
+            containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
+            containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
         
             DayText.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 8),
             DayText.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
