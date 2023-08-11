@@ -28,7 +28,7 @@ class DayTableViewCell: UITableViewCell {
         
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.numberOfLines = 1
-        lbl.font = .systemFont(ofSize: 30, weight: .bold)
+        lbl.font = .monospacedSystemFont(ofSize: 30, weight: .bold)
         
         lbl.textColor = .black
         
