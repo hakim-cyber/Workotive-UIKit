@@ -118,8 +118,9 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
         cell.selectionStyle = .none
         cell.userInteractionEnabledWhileDragging = true
         cell.isUserInteractionEnabled = true
+       
         cell.configure(day: day)
-        
+       
               return cell
       
     }

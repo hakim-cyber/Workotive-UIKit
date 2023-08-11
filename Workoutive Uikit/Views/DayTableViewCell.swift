@@ -9,6 +9,7 @@ import UIKit
 
 class DayTableViewCell: UITableViewCell {
 
+
     static let cellId = "DayTableViewCell"
 
     override func layoutSubviews() {
@@ -82,8 +83,8 @@ class DayTableViewCell: UITableViewCell {
                                                         
         NSLayoutConstraint.activate([
             containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 5.3),
-            containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: day.id == 1 ? 60: 4),
-            containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -4),
+            containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor,constant: 6),
+            containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -2),
             containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
             containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
         
