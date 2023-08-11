@@ -113,21 +113,32 @@ class AddViewController: UIViewController, UITableViewDelegate {
        
         return btn
     }()
-    private lazy var selectedDayLabel:UILabel = {
+    private lazy var daysOfWeek:UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.font = .systemFont(ofSize: UIScreen.main.bounds.width / 12, weight: .bold)
+        lbl.font = .systemFont(ofSize: UIScreen.main.bounds.width / 29, weight: .medium)
                lbl.textColor = .openGreen
                lbl.numberOfLines = 1
+        lbl.text = "DAY OF WEEK"
         
         return lbl
+    }()
+    private lazy var reminderLabel:UILabel = {
+        let reminderLabel = UILabel()
+        reminderLabel.translatesAutoresizingMaskIntoConstraints = false
+        reminderLabel.font = .systemFont(ofSize: UIScreen.main.bounds.width / 24, weight: .medium)
+        reminderLabel.textColor = .openGreen
+        reminderLabel.numberOfLines = 1
+        reminderLabel.text = "Reminder"
+        
+        return reminderLabel
     }()
     
     private lazy var stackOfAll:UIStackView = {
         let stackView = UIStackView()
-        stackView.alignment = .center
+        stackView.alignment = .top
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = 16
+        stackView.spacing = 20
         stackView.axis = .vertical
         return stackView
     }()
@@ -161,7 +172,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
     
 
     @objc func addBtnTapped(){
-        newDays([Day(id: 7, muscles: [])])
+        
         
         
     }
@@ -179,27 +190,49 @@ extension AddViewController{
         doneBtnView.addTarget(self, action: #selector(doneBtnTapped), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(addBtnTapped), for: .touchUpInside)
         
-        selectedDayLabel.text = "Sunday"
+        
         daysTableView.dataSource = self
        
         daysTableView.delegate = self
         
        
+        
+        
         self.view.addSubview(doneBtnView)
         self.view.addSubview(containerView)
+        self.view.addSubview(daysOfWeek)
+        self.containerView.addSubview(stackOfAll)
        
-        
-        
+        stackOfAll.addArrangedSubview(segmentedControl)
+        stackOfAll.addArrangedSubview(reminderLabel)
+        stackOfAll.addArrangedSubview(datePicker)
+        stackOfAll.addArrangedSubview(addButton)
+        stackOfAll.addArrangedSubview(daysTableView)
         
         NSLayoutConstraint.activate([
-           
-            containerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.12),
-            containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 1.62),
-            containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            
             
            
+            containerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.12),
            
+            containerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: self.view.bounds.height / 9),
+            containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            
+            daysOfWeek.bottomAnchor.constraint(equalTo: self.containerView.topAnchor, constant: -8),
+            daysOfWeek.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
+            
+            stackOfAll.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 16),
+            stackOfAll.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: -16),
+            stackOfAll.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
+            stackOfAll.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -16),
+            
+            daysTableView.topAnchor.constraint(equalTo: self.addButton.bottomAnchor, constant: 16),
+            daysTableView.bottomAnchor.constraint(equalTo: self.stackOfAll.bottomAnchor),
+            daysTableView.leadingAnchor.constraint(equalTo: self.stackOfAll.leadingAnchor),
+            daysTableView.trailingAnchor.constraint(equalTo: self.stackOfAll.trailingAnchor),
+            
+            addButton.centerXAnchor.constraint(equalTo: self.stackOfAll.centerXAnchor),
+            
             
             doneBtnView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 10),
             doneBtnView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
