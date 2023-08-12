@@ -8,13 +8,25 @@
 import UIKit
 
 class MuscleViewController: UIViewController {
-
+    // Data
+    
     var selectedDay:Day?
+    
+    
+    // Setup Actions
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         
+        setup()
+        setupNavigationHeader()
+        // Do any additional setup after loading the view.
+    }
+    
+    func setup(){
         let label = UILabel()
         label.text = "\(String(describing: selectedDay?.id))"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,18 +35,27 @@ class MuscleViewController: UIViewController {
         self.view.addSubview(label)
         label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        // Do any additional setup after loading the view.
     }
+    func setupNavigationHeader(){
+        let btnAdd = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(addButtonTapped))
+        
+        let btnPlay =  UIBarButtonItem(image: UIImage(systemName: "play.circle"), style: .done, target: self, action: #selector(playButtonTapped))
+        btnAdd.tintColor = .openGreen
+        btnPlay.tintColor = .openGreen
+        
+        
+        navigationItem.setRightBarButtonItems([btnAdd,btnPlay], animated: true)
+        
+    }
+
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    // Button Actions
+    @objc func addButtonTapped(){
+        
     }
-    */
-
+    @objc func playButtonTapped(){
+        
+    }
 }
