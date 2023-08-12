@@ -15,9 +15,11 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
        setup()
+        
     }
   
     @objc func plusBtnTapped(){
+        
         var addView = AddViewController()
        
         addView.bind{[weak self] day in
