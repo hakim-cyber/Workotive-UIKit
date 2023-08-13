@@ -35,6 +35,18 @@ class DayTableViewCell: UITableViewCell {
         
         return lbl
     }()
+    private lazy var muscleCountText:UILabel = {
+        let lbl = UILabel()
+        
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 1
+        lbl.font = .monospacedSystemFont(ofSize: 20, weight: .medium)
+        
+        lbl.textColor = .black
+        
+        
+        return lbl
+    }()
     private lazy var arrowImage:UIImageView = {
         let imgView = UIImageView()
         
@@ -68,7 +80,7 @@ class DayTableViewCell: UITableViewCell {
         default:
             DayText.text = "Sunday"
         }
-        
+        muscleCountText.text = "\(day.muscles.count) muscles"
         self.containerView.isUserInteractionEnabled = true
         
         arrowImage.image = UIImage(systemName: "arrow.right")
@@ -78,6 +90,7 @@ class DayTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(containerView)
         containerView.addSubview(DayText)
+        containerView.addSubview(muscleCountText)
         containerView.addSubview(arrowImage)
        
                                                         
@@ -90,6 +103,9 @@ class DayTableViewCell: UITableViewCell {
         
             DayText.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 8),
             DayText.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
+            
+            muscleCountText.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: -8),
+            muscleCountText.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
             
             arrowImage.heightAnchor.constraint(equalToConstant: 20),
             arrowImage.widthAnchor.constraint(equalToConstant: 20),

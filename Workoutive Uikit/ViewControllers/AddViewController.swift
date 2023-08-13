@@ -57,6 +57,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.selectedSegmentTintColor = .openGreen
         segmentedControl.apportionsSegmentWidthsByContent = false
+        segmentedControl.tintColor = .secondaryLabel
         let atributeBlack =  [NSAttributedString.Key.foregroundColor: UIColor.black]
        
         

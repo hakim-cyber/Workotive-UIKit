@@ -120,6 +120,7 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
         cell.selectionStyle = .none
         cell.userInteractionEnabledWhileDragging = true
         cell.isUserInteractionEnabled = true
+        cell.backgroundColor = .clear
        
         cell.configure(day: day)
        
@@ -131,7 +132,10 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
             print("selected")
             let vc = MuscleViewController()
         vc.bind { muscle in
-            self.dataManager.addMuscleTo(dayID: indexPath.row, muscle: muscle)
+            self.dataManager.addMuscleTo(dayID:self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row].id , muscle: muscle)
+            self.daysTableView.reloadData()
+            
+            vc.selectedDay = self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
         }
             vc.selectedDay = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
             

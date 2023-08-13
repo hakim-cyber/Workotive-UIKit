@@ -17,7 +17,16 @@ class MuscleViewController: UIViewController {
             newMuscle = callBack
         }
     
-    let muscles:[String] = ["Back","Chest","Biceps","Triceps","Core","Legs"]
+    let muscles:[String] = ["back",
+                            "cardio",
+                            "chest",
+                            "lower arms",
+                            "lower legs",
+                            "neck",
+                            "shoulders",
+                            "upper arms",
+                            "upper legs",
+                            "waist"]
     // Setup VIews
     private lazy var musclePicker:UIPickerView = {
         let pck = UIPickerView()
@@ -29,14 +38,14 @@ class MuscleViewController: UIViewController {
         pck.tintColor = .openGreen
         pck.layer.backgroundColor = UIColor.clear.cgColor
        
-    
+        
         
         return pck
     }()
     private lazy var addViewContainer:UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.25)
+        view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.2)
         view.layer.cornerRadius = 15
         return view
     }()
@@ -57,9 +66,8 @@ class MuscleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .black
-        
-        setup()
+        self.view.backgroundColor = .systemBackground
+                setup()
         setupNavigationHeader()
         // Do any additional setup after loading the view.
     }
@@ -85,7 +93,7 @@ class MuscleViewController: UIViewController {
     
         NSLayoutConstraint.activate([
             
-            addViewContainer.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            addViewContainer.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             addViewContainer.trailingAnchor.constraint(equalTo:  self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             addViewContainer.widthAnchor.constraint(equalToConstant: self.view.bounds.width * 0.35),
             addViewContainer.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.23),
@@ -93,7 +101,7 @@ class MuscleViewController: UIViewController {
             addMuscleButton.widthAnchor.constraint(equalToConstant: self.view.bounds.width * 0.35),
             addMuscleButton.heightAnchor.constraint(equalToConstant:   30),
             addMuscleButton.centerXAnchor.constraint(equalTo: addViewContainer.centerXAnchor),
-            addMuscleButton.bottomAnchor.constraint(equalTo: addViewContainer.bottomAnchor, constant: -8),
+            addMuscleButton.bottomAnchor.constraint(equalTo: addViewContainer.bottomAnchor),
             
             
             musclePicker.widthAnchor.constraint(equalToConstant:  self.view.bounds.width * 0.33),
@@ -136,6 +144,10 @@ class MuscleViewController: UIViewController {
     }
     @objc func addMuscleButtonTapped(){
         
+        let muscleId = self.muscles[musclePicker.selectedRow(inComponent: 0)]
+        let muscle = Muscle(muscle: muscleId, exercises: [])
+        
+        self.newMuscle(muscle)
     }
     @objc func playButtonTapped(){
         
