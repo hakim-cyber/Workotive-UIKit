@@ -133,16 +133,18 @@ class MuscleViewController: UIViewController {
     
     // Button Actions
     @objc func showAddViewTapped(){
-        if self.addViewContainer.isHidden == true{
-            self.addViewContainer.hideWithAnimation(hidden: false)
-            self.musclePicker.hideWithAnimation(hidden: false)
-            self.addMuscleButton.hideWithAnimation(hidden: false)
-        }else{
-            // close
-            self.addViewContainer.hideWithAnimation(hidden: true)
-            self.musclePicker.hideWithAnimation(hidden: true)
-            self.addMuscleButton.hideWithAnimation(hidden: true)
-        }
+           openAddView()
+    }
+    func openAddView(){
+        self.addViewContainer.hideWithAnimation(hidden: false)
+        self.musclePicker.hideWithAnimation(hidden: false)
+        self.addMuscleButton.hideWithAnimation(hidden: false)
+    }
+    func closeAddView(){
+        // close
+        self.addViewContainer.hideWithAnimation(hidden: true)
+        self.musclePicker.hideWithAnimation(hidden: true)
+        self.addMuscleButton.hideWithAnimation(hidden: true)
     }
     @objc func addMuscleButtonTapped(){
         if muscles.count > 0{
@@ -150,6 +152,8 @@ class MuscleViewController: UIViewController {
             let muscle = Muscle(muscle: muscleId, exercises: [])
             
             self.newMuscle(muscle)
+            
+            closeAddView()
         }
     }
     func filterMuscles(){
