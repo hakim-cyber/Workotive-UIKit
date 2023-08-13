@@ -25,4 +25,10 @@ class DataManager:ObservableObject{
             self.days.append(day)
         
     }
+    func addMuscleTo(dayID:Int,muscle:Muscle){
+        if let index = self.days.firstIndex(where: {$0.id == dayID}){
+            self.days[index].muscles.append(muscle)
+        }
+    }
+    
 }

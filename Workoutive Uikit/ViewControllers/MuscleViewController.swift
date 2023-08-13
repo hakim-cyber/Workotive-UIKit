@@ -11,6 +11,11 @@ class MuscleViewController: UIViewController {
     // Data
     
     var selectedDay:Day?
+    var newMuscle:(Muscle)->Void = {_ in }
+    
+    func bind(callBack: @escaping (Muscle)->Void){
+            newMuscle = callBack
+        }
     
     let muscles:[String] = ["Back","Chest","Biceps","Triceps","Core","Legs"]
     // Setup VIews

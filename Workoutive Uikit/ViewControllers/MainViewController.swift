@@ -130,7 +130,9 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
        
             print("selected")
             let vc = MuscleViewController()
-            
+        vc.bind { muscle in
+            self.dataManager.addMuscleTo(dayID: indexPath.row, muscle: muscle)
+        }
             vc.selectedDay = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
             
             self.navigationController?.pushViewController(vc, animated: true)
