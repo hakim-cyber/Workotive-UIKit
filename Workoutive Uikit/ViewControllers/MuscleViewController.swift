@@ -13,8 +13,8 @@ class MuscleViewController: UIViewController {
     var selectedDay:Day?
     
     let muscles:[String] = ["Back","Chest","Biceps","Triceps","Core","Legs"]
-    // Setup Actions
-    private lazy var picker:UIPickerView = {
+    // Setup VIews
+    private lazy var musclePicker:UIPickerView = {
         let pck = UIPickerView()
         
         
@@ -31,9 +31,32 @@ class MuscleViewController: UIViewController {
     private lazy var addViewContainer:UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.05)
+        view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.25)
+        view.layer.cornerRadius = 15
         return view
     }()
+    private lazy var addMuscleButton:UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setTitle("Add Muscle", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        btn.backgroundColor = .openGreen
+        btn.layer.cornerRadius = 15
+        btn.titleLabel?.adjustsFontSizeToFitWidth = true
+        btn.addTarget(self, action: #selector(addMuscleButtonTapped), for: .touchUpInside)
+        return btn
+    }()
+    private lazy var cancelButton:UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+     
+        btn.setImage(UIImage(systemName: "xmark"), for: .normal)
+        btn.tintColor = .openGreen
+        btn.addTarget(self, action: #selector(cancelAddViewTapped), for: .touchUpInside)
+        return btn
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,18 +69,48 @@ class MuscleViewController: UIViewController {
     
     func setup(){
        
-        self.view.addSubview(picker)
+       setupAddingView()
       
         NSLayoutConstraint.activate([
-            picker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            picker.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            picker.widthAnchor.constraint(equalToConstant: 100),
+           
             
         ])
        
     }
+    func setupAddingView(){
+        self.view.addSubview(addViewContainer)
+        addViewContainer.addSubview(cancelButton)
+        addViewContainer.addSubview(musclePicker)
+        addViewContainer.addSubview(addMuscleButton)
+        
+        
+    
+        NSLayoutConstraint.activate([
+            
+            addViewContainer.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            addViewContainer.trailingAnchor.constraint(equalTo:  self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            addViewContainer.widthAnchor.constraint(equalToConstant: self.view.bounds.width * 0.35),
+            addViewContainer.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.23),
+            
+            addMuscleButton.widthAnchor.constraint(equalToConstant: self.view.bounds.width * 0.35),
+            addMuscleButton.heightAnchor.constraint(equalToConstant:   30),
+            addMuscleButton.centerXAnchor.constraint(equalTo: addViewContainer.centerXAnchor),
+            addMuscleButton.bottomAnchor.constraint(equalTo: addViewContainer.bottomAnchor, constant: -8),
+            
+            
+            musclePicker.widthAnchor.constraint(equalToConstant:  self.view.bounds.width * 0.33),
+            musclePicker.heightAnchor.constraint(equalToConstant:   self.view.bounds.height * 0.18),
+            musclePicker.centerXAnchor.constraint(equalTo: self.addViewContainer.centerXAnchor),
+            musclePicker.topAnchor.constraint(equalTo: self.addViewContainer.safeAreaLayoutGuide.topAnchor),
+            musclePicker.bottomAnchor.constraint(equalTo: self.addViewContainer.safeAreaLayoutGuide.bottomAnchor),
+            
+            cancelButton.leadingAnchor.constraint(equalTo: self.addViewContainer.leadingAnchor, constant: 8),
+            cancelButton.topAnchor.constraint(equalTo: self.addViewContainer.topAnchor, constant: 8),
+            
+        ])
+    }
     func setupNavigationHeader(){
-        let btnAdd = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(addButtonTapped))
+        let btnAdd = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(showAddViewTapped))
         
         let btnPlay =  UIBarButtonItem(image: UIImage(systemName: "play.circle"), style: .done, target: self, action: #selector(playButtonTapped))
         btnAdd.tintColor = .openGreen
@@ -72,7 +125,13 @@ class MuscleViewController: UIViewController {
     
     
     // Button Actions
-    @objc func addButtonTapped(){
+    @objc func showAddViewTapped(){
+        
+    }
+    @objc func cancelAddViewTapped(){
+        
+    }
+    @objc func addMuscleButtonTapped(){
         
     }
     @objc func playButtonTapped(){
@@ -102,9 +161,9 @@ extension MuscleViewController:UIPickerViewDelegate,UIPickerViewDataSource{
         return label
     }
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30.0
+        return 30
     }
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return 100
+        return  self.view.bounds.width * 0.35
     }
 }
