@@ -117,7 +117,7 @@ class MuscleViewController: UIViewController {
         ])
     }
     func setupNavigationHeader(){
-        let btnAdd = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(showAddViewTapped))
+        let btnAdd = UIBarButtonItem(image:  UIImage(systemName: "plus.circle")  , style: .done, target: self, action: #selector(showAddViewTapped))
         
         let btnPlay =  UIBarButtonItem(image: UIImage(systemName: "play.circle"), style: .done, target: self, action: #selector(playButtonTapped))
         btnAdd.tintColor = .openGreen
@@ -133,7 +133,11 @@ class MuscleViewController: UIViewController {
     
     // Button Actions
     @objc func showAddViewTapped(){
-           openAddView()
+        if addViewContainer.isHidden{
+            openAddView()
+        }else{
+            closeAddView()
+        }
     }
     func openAddView(){
         self.addViewContainer.hideWithAnimation(hidden: false)
