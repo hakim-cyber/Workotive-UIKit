@@ -118,9 +118,16 @@ class MuscleViewController: UIViewController {
     
     // Button Actions
     @objc func showAddViewTapped(){
-        self.addViewContainer.isHidden.toggle()
-        self.musclePicker.isHidden.toggle()
-        self.addMuscleButton.isHidden.toggle()
+        if self.addViewContainer.isHidden == true{
+            self.addViewContainer.hideWithAnimation(hidden: false)
+            self.musclePicker.hideWithAnimation(hidden: false)
+            self.addMuscleButton.hideWithAnimation(hidden: false)
+        }else{
+            // close
+            self.addViewContainer.hideWithAnimation(hidden: true)
+            self.musclePicker.hideWithAnimation(hidden: true)
+            self.addMuscleButton.hideWithAnimation(hidden: true)
+        }
     }
     @objc func addMuscleButtonTapped(){
         
@@ -156,5 +163,16 @@ extension MuscleViewController:UIPickerViewDelegate,UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return  self.view.bounds.width * 0.35
+    }
+}
+
+
+
+extension UIView {
+func hideWithAnimation(hidden: Bool) {
+    UIView.transition(with: self, duration: 0.4, options:  .transitionFlipFromRight, animations: {
+            self.isHidden = hidden
+        })
+    
     }
 }
