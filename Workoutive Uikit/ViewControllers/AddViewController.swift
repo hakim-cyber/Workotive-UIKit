@@ -165,6 +165,7 @@ class AddViewController: UIViewController, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark   
         self.view.backgroundColor = .systemBackground
         segmentedControl.selectedSegmentIndex = 0
         

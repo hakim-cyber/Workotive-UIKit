@@ -67,7 +67,7 @@ class MainViewController: UIViewController {
 
 private extension MainViewController{
     func setup(){
-        
+        overrideUserInterfaceStyle = .dark   
         self.view.backgroundColor = .systemBackground
         setupNavigationBar()
         
@@ -136,9 +136,11 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
             self.daysTableView.reloadData()
             
             vc.selectedDay = self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
+            vc.filterMuscles()
         }
+       
             vc.selectedDay = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
-            
+        vc.filterMuscles()
             self.navigationController?.pushViewController(vc, animated: true)
             
         

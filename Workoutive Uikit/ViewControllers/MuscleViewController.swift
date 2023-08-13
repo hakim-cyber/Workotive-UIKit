@@ -17,7 +17,7 @@ class MuscleViewController: UIViewController {
             newMuscle = callBack
         }
     
-    let muscles:[String] = ["back",
+    var muscles:[String] = ["back",
                             "cardio",
                             "chest",
                             "lower arms",
@@ -45,6 +45,7 @@ class MuscleViewController: UIViewController {
     private lazy var addViewContainer:UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+            
         view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.2)
         view.layer.cornerRadius = 15
         return view
@@ -66,6 +67,7 @@ class MuscleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark   
         self.view.backgroundColor = .systemBackground
                 setup()
         setupNavigationHeader()
@@ -143,11 +145,18 @@ class MuscleViewController: UIViewController {
         }
     }
     @objc func addMuscleButtonTapped(){
-        
-        let muscleId = self.muscles[musclePicker.selectedRow(inComponent: 0)]
-        let muscle = Muscle(muscle: muscleId, exercises: [])
-        
-        self.newMuscle(muscle)
+        if muscles.count > 0{
+            let muscleId = self.muscles[musclePicker.selectedRow(inComponent: 0)]
+            let muscle = Muscle(muscle: muscleId, exercises: [])
+            
+            self.newMuscle(muscle)
+        }
+    }
+    func filterMuscles(){
+        self.muscles =   self.muscles.filter{mscl in
+            return !(self.selectedDay?.muscles.contains(where: {$0.muscle == mscl}))!
+        }
+        musclePicker.reloadAllComponents()
     }
     @objc func playButtonTapped(){
         
@@ -170,7 +179,7 @@ extension MuscleViewController:UIPickerViewDelegate,UIPickerViewDataSource{
         label.textColor = .openGreen
         label.font = .systemFont(ofSize: 16, weight: .bold)
         
-        label.text = muscles[row]
+        label.text = muscles[row].capitalized
         
        
         return label
