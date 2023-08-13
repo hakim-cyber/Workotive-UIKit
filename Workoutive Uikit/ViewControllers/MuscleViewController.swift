@@ -47,15 +47,7 @@ class MuscleViewController: UIViewController {
         btn.addTarget(self, action: #selector(addMuscleButtonTapped), for: .touchUpInside)
         return btn
     }()
-    private lazy var cancelButton:UIButton = {
-        let btn = UIButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-     
-        btn.setImage(UIImage(systemName: "xmark"), for: .normal)
-        btn.tintColor = .openGreen
-        btn.addTarget(self, action: #selector(cancelAddViewTapped), for: .touchUpInside)
-        return btn
-    }()
+   
     
     
     override func viewDidLoad() {
@@ -79,11 +71,12 @@ class MuscleViewController: UIViewController {
     }
     func setupAddingView(){
         self.view.addSubview(addViewContainer)
-        addViewContainer.addSubview(cancelButton)
         addViewContainer.addSubview(musclePicker)
         addViewContainer.addSubview(addMuscleButton)
         
-        
+        self.addViewContainer.isHidden = true
+        self.musclePicker.isHidden = true
+        self.addMuscleButton.isHidden = true
     
         NSLayoutConstraint.activate([
             
@@ -102,10 +95,9 @@ class MuscleViewController: UIViewController {
             musclePicker.heightAnchor.constraint(equalToConstant:   self.view.bounds.height * 0.18),
             musclePicker.centerXAnchor.constraint(equalTo: self.addViewContainer.centerXAnchor),
             musclePicker.topAnchor.constraint(equalTo: self.addViewContainer.safeAreaLayoutGuide.topAnchor),
-            musclePicker.bottomAnchor.constraint(equalTo: self.addViewContainer.safeAreaLayoutGuide.bottomAnchor),
+            musclePicker.bottomAnchor.constraint(equalTo: self.addMuscleButton.topAnchor,constant: -8),
             
-            cancelButton.leadingAnchor.constraint(equalTo: self.addViewContainer.leadingAnchor, constant: 8),
-            cancelButton.topAnchor.constraint(equalTo: self.addViewContainer.topAnchor, constant: 8),
+           
             
         ])
     }
@@ -126,10 +118,9 @@ class MuscleViewController: UIViewController {
     
     // Button Actions
     @objc func showAddViewTapped(){
-        
-    }
-    @objc func cancelAddViewTapped(){
-        
+        self.addViewContainer.isHidden.toggle()
+        self.musclePicker.isHidden.toggle()
+        self.addMuscleButton.isHidden.toggle()
     }
     @objc func addMuscleButtonTapped(){
         
