@@ -156,7 +156,7 @@ class MuscleViewController: UIViewController {
         
         
         navigationItem.setRightBarButtonItems([btnAdd,btnPlay], animated: true)
-        
+        navigationController?.navigationBar.barTintColor = .clear
     }
 
     
@@ -256,8 +256,10 @@ extension MuscleViewController:UITableViewDelegate,UITableViewDataSource{
         cell.userInteractionEnabledWhileDragging = true
         cell.isUserInteractionEnabled = true
         cell.backgroundColor = .clear
-       
-        cell.configure(muscle: Muscle(muscle: "", exercises: [ExerciseApi]()))
+        if let muscle = selectedDay?.muscles[indexPath.row]{
+            cell.configure(muscle: muscle )
+            
+        }
        
               return cell
        

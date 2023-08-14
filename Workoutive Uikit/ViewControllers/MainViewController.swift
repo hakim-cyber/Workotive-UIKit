@@ -93,14 +93,14 @@ private extension MainViewController{
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         imageView.contentMode = .scaleAspectFit
         imageView.image = image
-        imageView.tintColor = .label
+        imageView.tintColor = .white
         self.navigationItem.titleView = imageView
          let btn = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(plusBtnTapped))
         btn.tintColor = UIColor.openGreen
         
         
         self.navigationItem.rightBarButtonItem = btn
-        
+        navigationController?.navigationBar.barTintColor = .clear
         
     }
     
