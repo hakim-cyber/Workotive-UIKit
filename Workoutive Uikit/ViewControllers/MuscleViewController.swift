@@ -7,16 +7,22 @@
 
 import UIKit
 
+
+enum MuscleViewEvents{
+    case newMuscle(Muscle)
+    case deleteMuscle(Muscle)
+}
+
 class MuscleViewController: UIViewController {
     // Data
     
     var selectedDay:Day?
-    var newMuscle:(Muscle)->Void = {_ in }
+    var onEvent:(MuscleViewEvents)->Void = {_ in }
    
    
     
-    func bind(callBack: @escaping (Muscle)->Void){
-            newMuscle = callBack
+    func bind(callBack: @escaping (MuscleViewEvents)->Void){
+            onEvent = callBack
         }
     
     var muscles:[String] = ["back",
@@ -186,7 +192,7 @@ class MuscleViewController: UIViewController {
             let muscleId = self.muscles[musclePicker.selectedRow(inComponent: 0)]
             let muscle = Muscle(muscle: muscleId, exercises: [])
             
-            self.newMuscle(muscle)
+            self.onEvent(MuscleViewEvents.newMuscle(muscle))
             
             closeAddView()
         }
@@ -275,6 +281,13 @@ extension MuscleViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "") { action, voew, completHandler in
             print("Delete \(indexPath.row)")
+            
+            
+            if let muscle = self.selectedDay?.muscles[indexPath.row]{
+                
+                self.onEvent(MuscleViewEvents.deleteMuscle(muscle))
+            }
+            
             completHandler(true)
         }
         delete.backgroundColor = .black

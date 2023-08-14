@@ -25,10 +25,19 @@ class DataManager:ObservableObject{
             self.days.append(day)
         
     }
+    func removeDay(day:Day){
+       
+        self.days.removeAll(where: {$0.id == day.id})
+        
+    }
     func addMuscleTo(dayID:Int,muscle:Muscle){
         if let index = self.days.firstIndex(where: {$0.id == dayID}){
             self.days[index].muscles.append(muscle)
         }
     }
-    
+    func deleteMuscleAt(dayID:Int,muscle:Muscle){
+        if let index = self.days.firstIndex(where: {$0.id == dayID}){
+            self.days[index].muscles.removeAll(where: {$0.id == muscle.id})
+        }
+    }
 }

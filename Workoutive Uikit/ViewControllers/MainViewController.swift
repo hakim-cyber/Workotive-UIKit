@@ -131,12 +131,22 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
        
             print("selected")
             let vc = MuscleViewController()
-        vc.bind { muscle in
-            self.dataManager.addMuscleTo(dayID:self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row].id , muscle: muscle)
-            self.daysTableView.reloadData()
-            
-            vc.selectedDay = self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
-            vc.filterMuscles()
+        vc.bind { event in
+            switch event {
+            case .newMuscle(let muscle):
+                self.dataManager.addMuscleTo(dayID:self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row].id , muscle: muscle)
+                self.daysTableView.reloadData()
+                
+                vc.selectedDay = self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
+                vc.filterMuscles()
+            case .deleteMuscle(let muscle):
+                self.dataManager.deleteMuscleAt(dayID: self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row].id, muscle: muscle)
+                self.daysTableView.reloadData()
+                
+                vc.selectedDay = self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
+                vc.filterMuscles()
+            }
+          
         }
        
             vc.selectedDay = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
@@ -148,6 +158,11 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { action, voew, completHandler in
             print("Delete \(indexPath.row)")
+            
+            let day = self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
+            self.dataManager.removeDay(day: day)
+            self.daysTableView.reloadData()
+            
             completHandler(true)
         }
         delete.backgroundColor = .black
