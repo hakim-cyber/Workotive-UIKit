@@ -272,4 +272,16 @@ extension MuscleViewController:UITableViewDelegate,UITableViewDataSource{
          
         
     }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "") { action, voew, completHandler in
+            print("Delete \(indexPath.row)")
+            completHandler(true)
+        }
+        delete.backgroundColor = .black
+        delete.image = UIImage(systemName: "trash.fill")
+        
+    
+        
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
 }

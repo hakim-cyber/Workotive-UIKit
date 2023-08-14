@@ -145,6 +145,18 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
             
         
     }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "") { action, voew, completHandler in
+            print("Delete \(indexPath.row)")
+            completHandler(true)
+        }
+        delete.backgroundColor = .black
+        delete.image = UIImage(systemName: "trash.fill")
+        delete.image?.withTintColor(.systemRed)
+        
     
+        
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
 
 }

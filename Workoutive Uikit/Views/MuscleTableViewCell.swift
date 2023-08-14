@@ -81,8 +81,8 @@ class MuscleTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 5.45),
-            containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor,constant: 10),
-            containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -2),
+            containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor,constant:6),
+            containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor,constant:-6),
             containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -25),
             containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 25),
             
