@@ -12,6 +12,8 @@ class MuscleViewController: UIViewController {
     
     var selectedDay:Day?
     var newMuscle:(Muscle)->Void = {_ in }
+   
+   
     
     func bind(callBack: @escaping (Muscle)->Void){
             newMuscle = callBack
@@ -38,7 +40,7 @@ class MuscleViewController: UIViewController {
         pck.tintColor = .openGreen
         pck.layer.backgroundColor = UIColor.clear.cgColor
        
-        
+    
         
         return pck
     }()
@@ -46,8 +48,10 @@ class MuscleViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
             
-        view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.2)
+        view.backgroundColor = UIColor.darkGray
         view.layer.cornerRadius = 15
+        view.isUserInteractionEnabled = true
+        
         return view
     }()
     private lazy var addMuscleButton:UIButton = {
@@ -64,7 +68,21 @@ class MuscleViewController: UIViewController {
     }()
    
     private lazy var musclesTableView:UITableView = {
+        let tv = UITableView()
+        tv.showsVerticalScrollIndicator = false
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.backgroundColor = .clear
+        tv.rowHeight = UITableView.automaticDimension
+        tv.estimatedRowHeight = UIScreen.main.bounds.height / 6
+        tv.separatorStyle = .none
+        tv.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tv.allowsSelection = true
+        tv.register(MuscleTableViewCell.self, forCellReuseIdentifier: MuscleTableViewCell.cellId)
+        tv.dataSource = self
+        tv.delegate = self
+        tv.isScrollEnabled = true
         
+        return tv
     }()
     
     override func viewDidLoad() {
@@ -88,12 +106,18 @@ class MuscleViewController: UIViewController {
     }
     func setupAddingView(){
         self.view.addSubview(addViewContainer)
+        self.view.addSubview(musclesTableView)
         addViewContainer.addSubview(musclePicker)
         addViewContainer.addSubview(addMuscleButton)
+        
+        self.view.bringSubviewToFront(addViewContainer)
+        
         
         self.addViewContainer.isHidden = true
         self.musclePicker.isHidden = true
         self.addMuscleButton.isHidden = true
+        
+        self.musclesTableView.contentInset = UIEdgeInsets(top: 50,left: 0,bottom: 35,right: 0)
     
         NSLayoutConstraint.activate([
             
@@ -113,6 +137,11 @@ class MuscleViewController: UIViewController {
             musclePicker.centerXAnchor.constraint(equalTo: self.addViewContainer.centerXAnchor),
             musclePicker.topAnchor.constraint(equalTo: self.addViewContainer.safeAreaLayoutGuide.topAnchor),
             musclePicker.bottomAnchor.constraint(equalTo: self.addMuscleButton.topAnchor,constant: -8),
+            
+            musclesTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            musclesTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            musclesTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            musclesTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
             
            
             
@@ -210,5 +239,34 @@ func hideWithAnimation(hidden: Bool) {
             self.isHidden = hidden
         })
     
+    }
+}
+
+
+extension MuscleViewController:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return selectedDay?.muscles.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: MuscleTableViewCell.cellId, for: indexPath) as! MuscleTableViewCell
+        cell.selectionStyle = .none
+        cell.userInteractionEnabledWhileDragging = true
+        cell.isUserInteractionEnabled = true
+        cell.backgroundColor = .clear
+       
+        cell.configure(muscle: Muscle(muscle: "", exercises: [ExerciseApi]()))
+       
+              return cell
+       
+             
+      
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+            print("selected")
+         
+        
     }
 }

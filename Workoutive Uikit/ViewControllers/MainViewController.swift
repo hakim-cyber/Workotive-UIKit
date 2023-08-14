@@ -73,7 +73,7 @@ private extension MainViewController{
         
         daysTableView.dataSource = self
         daysTableView.delegate = self
-        self.daysTableView.contentInset = UIEdgeInsets(top: 70,left: 0,bottom: 35,right: 0)
+        self.daysTableView.contentInset = UIEdgeInsets(top: 50,left: 0,bottom: 35,right: 0)
         
         self.view.addSubview(daysTableView)
         NSLayoutConstraint.activate([
