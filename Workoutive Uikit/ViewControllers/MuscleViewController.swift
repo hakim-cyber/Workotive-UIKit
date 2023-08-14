@@ -63,7 +63,9 @@ class MuscleViewController: UIViewController {
         return btn
     }()
    
-    
+    private lazy var musclesTableView:UITableView = {
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
