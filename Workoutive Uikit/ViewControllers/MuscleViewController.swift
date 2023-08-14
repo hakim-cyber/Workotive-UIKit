@@ -196,6 +196,7 @@ class MuscleViewController: UIViewController {
             return !(self.selectedDay?.muscles.contains(where: {$0.muscle == mscl}))!
         }
         musclePicker.reloadAllComponents()
+        self.musclesTableView.reloadData()
     }
     @objc func playButtonTapped(){
         
