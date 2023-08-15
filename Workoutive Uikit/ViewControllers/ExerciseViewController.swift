@@ -277,7 +277,7 @@ class ExerciseViewController: UIViewController {
         }
     }
     @objc func addExerciseButtonTapped(){
-        if self.newExerciseSets != 0 && self.newExerciseReps != 0 && self.exercisePicker.selectedRow(inComponent: 0) >= 0{
+        if self.newExerciseSets != 0 && self.newExerciseReps != 0 &&  self.exerciseTextField.text != nil{
             var newExercise = exercises[self.exercisePicker.selectedRow(inComponent: 0)]
             newExercise.sets = self.newExerciseSets
             newExercise.repeatCount = self.newExerciseReps
@@ -285,6 +285,11 @@ class ExerciseViewController: UIViewController {
             self.onEvent(.new(newExercise))
             
             closeAddView()
+            self.newExerciseReps = 0
+            self.newExerciseSets = 0
+            self.setsAndRepsTextField.text = "\(self.newExerciseSets) sets x \(self.newExerciseReps) reps"
+            self.exerciseTextField.text = nil
+            self.exercisePicker.selectRow(0, inComponent: 0, animated: true)
         }
      
     }
