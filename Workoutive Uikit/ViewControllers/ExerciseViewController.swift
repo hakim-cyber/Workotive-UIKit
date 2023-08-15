@@ -225,10 +225,8 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
        
         return label
     }
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        exerciseTextField.text = workoutExercises[row]
     }
-    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return  self.view.bounds.width * 0.5
-    }
+   
 }
