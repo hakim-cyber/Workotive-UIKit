@@ -9,7 +9,7 @@ import UIKit
 
 
 class DataManager:ObservableObject{
-    private(set) var days:[Day] = [Day(id: 1, muscles: [Muscle(muscle: "Back", exercises: [])]),Day(id: 2, muscles: [])]
+    private(set) var days:[Day] = [Day(id: 1, muscles: [Muscle(muscle: "back", exercises: [])]),Day(id: 2, muscles: [])]
      
     init() {
         

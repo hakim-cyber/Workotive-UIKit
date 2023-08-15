@@ -13,6 +13,7 @@ class ExerciseViewController: UIViewController {
     // Views
     var newExerciseReps = 0
     var newExerciseSets = 0
+    var exercises = [ExerciseApi]()
     let workoutExercises = [
         "Push-ups",
         "Sit-ups",
@@ -153,12 +154,34 @@ class ExerciseViewController: UIViewController {
     func setup(){
        
         setupAddView()
-      
+       
+        
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.text = "\(exercises.count)"
+        self.view.addSubview(lbl)
         NSLayoutConstraint.activate([
-           
-            
+            lbl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            lbl.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         ])
        
+    }
+    let dm = DataManager()
+    
+    func loadExercises(onlyFilter:Bool = false,complete:@escaping ()->Void){
+        if onlyFilter{
+            self.exercises = self.exercises.filter{exercise in
+                return !(self.selectedMuscle?.exercises.contains(where: {$0.bodyPart == exercise.bodyPart}))!
+            }
+            complete()
+        }else{
+            dm.loadAllExcercises(for: self.selectedMuscle!.muscle) { exercises in
+                self.exercises = exercises.filter{exercise in
+                    return !(self.selectedMuscle?.exercises.contains(where: {$0.bodyPart == exercise.bodyPart}))!
+                }
+            }
+            complete()
+        }
     }
     func setupAddView(){
         self.view.addSubview(addViewContainer)

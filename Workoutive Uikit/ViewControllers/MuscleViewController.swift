@@ -280,7 +280,11 @@ extension MuscleViewController:UITableViewDelegate,UITableViewDataSource{
         
         vc.selectedMuscle = self.selectedDay?.muscles[indexPath.row]
         
-        self.navigationController?.pushViewController(vc, animated: true)
+        vc.loadExercises {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+       
         
          
         
