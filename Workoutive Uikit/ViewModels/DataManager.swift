@@ -48,6 +48,7 @@ class DataManager:ObservableObject{
             // if value nothing to do
             if let decoded = try? JSONDecoder().decode([ExerciseApi].self, from: savedData){
                 exercises = decoded
+                completion(exercises.filter{$0.bodyPart == bodyPart})
             }
         }else{
             let headers = [
@@ -70,6 +71,7 @@ class DataManager:ObservableObject{
                 if let decoded = try?JSONDecoder().decode([ExerciseApi].self, from: data){
                     DispatchQueue.main.async {
                         exercises = decoded
+                        completion(exercises.filter{$0.bodyPart == bodyPart})
                         print(exercises.first?.name)
                         if let encoded = try? JSONEncoder().encode(exercises){
                             UserDefaults.standard.set(encoded, forKey: saveKeyExercises)
@@ -80,6 +82,6 @@ class DataManager:ObservableObject{
             }.resume()
             
         }
-        completion(exercises.filter{$0.bodyPart == bodyPart})
+       
     }
 }

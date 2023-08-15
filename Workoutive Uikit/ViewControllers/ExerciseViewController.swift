@@ -178,9 +178,14 @@ class ExerciseViewController: UIViewController {
             dm.loadAllExcercises(for: self.selectedMuscle!.muscle) { exercises in
                 self.exercises = exercises.filter{exercise in
                     return !(self.selectedMuscle?.exercises.contains(where: {$0.bodyPart == exercise.bodyPart}))!
+                 
                 }
+                if exercises.count > 0{
+                    complete()
+                }
+                
             }
-            complete()
+           
         }
     }
     func setupAddView(){
