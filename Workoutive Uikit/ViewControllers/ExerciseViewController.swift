@@ -266,6 +266,11 @@ class ExerciseViewController: UIViewController {
         }
     }
     @objc func addExerciseButtonTapped(){
+        if self.newExerciseSets != 0 && self.newExerciseReps != 0 && self.exercisePicker.selectedRow(inComponent: 0) >= 0{
+            var newExercise = exercises[self.exercisePicker.selectedRow(inComponent: 0)]
+            newExercise.sets = self.newExerciseSets
+            newExercise.repeatCount = self.newExerciseReps
+        }
      
     }
     
