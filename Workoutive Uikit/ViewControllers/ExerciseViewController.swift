@@ -271,7 +271,7 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
         if pickerView.tag == 1{
             return 1
         }else {
-            return 2
+            return 4
         }
     }
 
@@ -280,7 +280,11 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
             return workoutExercises.count
         }else{
             if component == 0{
+                return 1
+            }else if component == 1{
                 return 8
+            }else if component == 2{
+                return 1
             }else{
                 return 20
             }
@@ -292,17 +296,25 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .openGreen
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        
+            if component == 1 || component == 3 {
+                label.font = .systemFont(ofSize: 16, weight: .bold)
+            }else if component == 0{
+                label.font = .systemFont(ofSize: 20, weight: .black)
+            }else if component == 2{
+                label.font = .systemFont(ofSize: 20, weight: .black)
+            }
         
         if pickerView.tag == 1{
             label.text = workoutExercises[row]
         }else{
-           
+            if component == 1 || component == 3 {
                 label.text =  "\(row + 1)"
-            
-               
-                
-            
+            }else if component == 0{
+                label.text = "Sets :"
+            }else if component == 2{
+                label.text = "Reps :"
+            }
         }
         
        
@@ -313,9 +325,9 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
             exerciseTextField.text = workoutExercises[row]
             exerciseTextField.resignFirstResponder()
         }else{
-            if component == 0{
+            if component == 1{
                 self.newExerciseSets = row + 1
-            }else{
+            }else if component == 3{
                 self.newExerciseReps = row + 1
                 
             }
