@@ -32,7 +32,12 @@ class DataManager:ObservableObject{
     }
     func addMuscleTo(dayID:Int,muscle:Muscle){
         if let index = self.days.firstIndex(where: {$0.id == dayID}){
-            self.days[index].muscles.append(muscle)
+            if let indexOfExistingMuscle = self.days[index].muscles.firstIndex(where: {$0.id == muscle.id}){
+                self.days[index].muscles[indexOfExistingMuscle] = muscle
+                print("adding existing muscle")
+            }else{
+                self.days[index].muscles.append(muscle)
+            }
         }
     }
     func deleteMuscleAt(dayID:Int,muscle:Muscle){

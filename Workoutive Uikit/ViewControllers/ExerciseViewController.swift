@@ -6,10 +6,21 @@
 //
 
 import UIKit
+enum ExerciseViewEvents{
+    case new(ExerciseApi)
+    case delete(ExerciseApi)
+}
 
 class ExerciseViewController: UIViewController {
 
     var selectedMuscle:Muscle?
+    var onEvent:(ExerciseViewEvents)->Void = {_ in }
+   
+   
+    
+    func bind(callBack: @escaping (ExerciseViewEvents)->Void){
+            onEvent = callBack
+        }
     // Views
     var newExerciseReps = 0
     var newExerciseSets = 0
@@ -26,6 +37,7 @@ class ExerciseViewController: UIViewController {
         "Bicep Curls",
         "Tricep Dips"
     ]
+    
     private lazy var exercisePicker:UIPickerView = {
         let pck = UIPickerView()
         
@@ -138,7 +150,13 @@ class ExerciseViewController: UIViewController {
         
         return tv
     }()
-    
+    private lazy var lbl:UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.text = "\(self.selectedMuscle?.exercises.count)"
+        
+        return lbl
+    }()
     
     // Setup
     
@@ -156,9 +174,7 @@ class ExerciseViewController: UIViewController {
         setupAddView()
        
         
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "\(exercises.count)"
+       
         self.view.addSubview(lbl)
         NSLayoutConstraint.activate([
             lbl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -168,13 +184,8 @@ class ExerciseViewController: UIViewController {
     }
     let dm = DataManager()
     
-    func loadExercises(onlyFilter:Bool = false,complete:@escaping ()->Void){
-        if onlyFilter{
-            self.exercises = self.exercises.filter{exercise in
-                return !(self.selectedMuscle?.exercises.contains(where: {$0.bodyPart == exercise.bodyPart}))!
-            }
-            complete()
-        }else{
+    func loadExercises(complete:@escaping ()->Void){
+        
             dm.loadAllExcercises(for: self.selectedMuscle!.muscle) { exercises in
                 self.exercises = exercises.filter{exercise in
                     return !(self.selectedMuscle?.exercises.contains(where: {$0.bodyPart == exercise.bodyPart}))!
@@ -186,7 +197,10 @@ class ExerciseViewController: UIViewController {
                 
             }
            
-        }
+        
+    }
+    func refreshAllData(){
+        self.lbl.text =  "\(self.selectedMuscle?.exercises.count)"
     }
     func setupAddView(){
         self.view.addSubview(addViewContainer)
@@ -270,6 +284,10 @@ class ExerciseViewController: UIViewController {
             var newExercise = exercises[self.exercisePicker.selectedRow(inComponent: 0)]
             newExercise.sets = self.newExerciseSets
             newExercise.repeatCount = self.newExerciseReps
+            
+            self.onEvent(.new(newExercise))
+            
+            closeAddView()
         }
      
     }
@@ -369,5 +387,6 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
             
         }
     }
+    
    
 }

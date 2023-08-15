@@ -280,9 +280,24 @@ extension MuscleViewController:UITableViewDelegate,UITableViewDataSource{
         
         vc.selectedMuscle = self.selectedDay?.muscles[indexPath.row]
         
+        vc.bind { event in
+            switch event {
+            case .new(let exercise):
+                var muscle = self.selectedDay?.muscles[indexPath.row]
+                muscle?.exercises.append(exercise)
+                self.onEvent(.newMuscle(muscle!))
+            case .delete(let exercise):
+                print("")
+            }
+            vc.selectedMuscle = self.selectedDay?.muscles[indexPath.row]
+            vc.refreshAllData()
+            
+        }
+        
         vc.loadExercises {
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
         
        
         
