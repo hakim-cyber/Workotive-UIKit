@@ -275,6 +275,13 @@ extension MuscleViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
             print("selected")
+        
+        let vc = ExerciseViewController()
+        
+        vc.selectedMuscle = self.selectedDay?.muscles[indexPath.row]
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
          
         
     }

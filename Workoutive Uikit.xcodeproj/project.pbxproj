@@ -11,6 +11,7 @@
 		0805D3492A80F49000262718 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D3482A80F49000262718 /* Structs.swift */; };
 		0805D34B2A80F75800262718 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D34A2A80F75800262718 /* DayTableViewCell.swift */; };
 		0805D34E2A81615500262718 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D34D2A81615500262718 /* Colors.swift */; };
+		083F05002A8BB36A007AFE51 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F04FF2A8BB36A007AFE51 /* ExerciseViewController.swift */; };
 		083F8E6F2A841FFE00D9CE9D /* AddDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */; };
 		0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845E02D2A8281FC00B9356D /* AddViewController.swift */; };
 		085856282A8A9FD100AB7292 /* MuscleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085856272A8A9FD100AB7292 /* MuscleTableViewCell.swift */; };
@@ -27,6 +28,7 @@
 		0805D3482A80F49000262718 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		0805D34A2A80F75800262718 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		0805D34D2A81615500262718 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		083F04FF2A8BB36A007AFE51 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDayViewModel.swift; sourceTree = "<group>"; };
 		0845E02D2A8281FC00B9356D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		085856272A8A9FD100AB7292 /* MuscleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleTableViewCell.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				08DFD9382A802E9A007C596E /* MainViewController.swift */,
 				0845E02D2A8281FC00B9356D /* AddViewController.swift */,
 				08ED33CF2A86D1C900EABE44 /* MuscleViewController.swift */,
+				083F04FF2A8BB36A007AFE51 /* ExerciseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				08DFD9352A802E9A007C596E /* AppDelegate.swift in Sources */,
 				083F8E6F2A841FFE00D9CE9D /* AddDayViewModel.swift in Sources */,
 				0805D34B2A80F75800262718 /* DayTableViewCell.swift in Sources */,
+				083F05002A8BB36A007AFE51 /* ExerciseViewController.swift in Sources */,
 				08DFD9372A802E9A007C596E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
