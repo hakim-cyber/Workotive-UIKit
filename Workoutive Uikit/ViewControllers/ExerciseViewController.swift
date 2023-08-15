@@ -305,7 +305,7 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 1{
-            return workoutExercises.count
+            return exercises.count
         }else{
             if component == 0{
                 return 1
@@ -334,7 +334,7 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
             }
         
         if pickerView.tag == 1{
-            label.text = workoutExercises[row]
+            label.text = exercises[row].name.capitalized
         }else{
             if component == 1 || component == 3 {
                 label.text =  "\(row + 1)"
@@ -350,7 +350,7 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1 {
-            exerciseTextField.text = workoutExercises[row]
+            exerciseTextField.text = exercises[row].name.capitalized
             exerciseTextField.resignFirstResponder()
         }else{
             if component == 1{
