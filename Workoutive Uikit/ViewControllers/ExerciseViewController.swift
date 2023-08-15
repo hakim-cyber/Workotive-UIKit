@@ -64,21 +64,30 @@ class ExerciseViewController: UIViewController {
     }()
     private lazy var setsTextField:UITextField = {
         let tf = UITextField()
-        
+        tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
     private lazy var repsTextField:UITextField = {
         let tf = UITextField()
-        
+        tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
     private lazy var exerciseTextField:UITextField = {
         let tf = UITextField()
-        tf.attributedPlaceholder = NSAttributedString(string: "Select Exercise",attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        tf.font = UIFont.systemFont(ofSize: 15)
-        tf.backgroundColor = .openGreen
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.attributedPlaceholder = NSAttributedString(string: "Select Exercise",attributes: [NSAttributedString.Key.foregroundColor : UIColor.white,NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15, weight: .bold)])
+        tf.textAlignment = .center
+        
+        tf.font = .systemFont(ofSize: 15, weight: .bold)
+        tf.adjustsFontSizeToFitWidth = true
+        tf.backgroundColor = .darkGray
+        tf.borderStyle = .none
+       
         tf.textColor = .white
-        tf.borderStyle = .line
+      
+        tf.layer.borderWidth = 2
+        tf.layer.cornerRadius = 10
+        tf.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         
         return tf
     }()
@@ -146,17 +155,18 @@ class ExerciseViewController: UIViewController {
             addViewContainer.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             addViewContainer.trailingAnchor.constraint(equalTo:  self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             addViewContainer.widthAnchor.constraint(equalToConstant: self.view.bounds.width * 0.55),
-            addViewContainer.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.28),
+            addViewContainer.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.2),
             
             addExerciseButton.widthAnchor.constraint(equalToConstant:self.view.bounds.width * 0.55),
             addExerciseButton.heightAnchor.constraint(equalToConstant:   30),
             addExerciseButton.centerXAnchor.constraint(equalTo: addViewContainer.centerXAnchor),
             addExerciseButton.bottomAnchor.constraint(equalTo: addViewContainer.bottomAnchor),
             
-            exerciseTextField.widthAnchor.constraint(equalToConstant: self.view.bounds.width * 0.55),
+            exerciseTextField.widthAnchor.constraint(equalToConstant: self.view.bounds.width * 0.5),
+            exerciseTextField.heightAnchor.constraint(equalToConstant: 33),
            
             exerciseTextField.centerXAnchor.constraint(equalTo: self.addViewContainer.centerXAnchor),
-            exerciseTextField.centerYAnchor.constraint(equalTo: self.addViewContainer.centerYAnchor)
+            exerciseTextField.topAnchor.constraint(equalTo: self.addViewContainer.topAnchor,constant: 20)
             
         ])
     
@@ -227,6 +237,7 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         exerciseTextField.text = workoutExercises[row]
+        exerciseTextField.resignFirstResponder()
     }
    
 }
