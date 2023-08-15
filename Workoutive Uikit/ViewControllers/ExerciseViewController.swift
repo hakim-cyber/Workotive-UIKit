@@ -131,10 +131,15 @@ class ExerciseViewController: UIViewController {
         
         self.addViewContainer.isHidden = true
         
+        
         exerciseTextField.inputView = exercisePicker
         
        
-        
+        let toolbar = UIToolbar()
+          toolbar.sizeToFit()
+          let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(exercisePickerDoneButtonTapped))
+          toolbar.setItems([doneButton], animated: false)
+          exerciseTextField.inputAccessoryView = toolbar
         
         
         NSLayoutConstraint.activate([
@@ -181,6 +186,9 @@ class ExerciseViewController: UIViewController {
     }
     @objc func addExerciseButtonTapped(){
        
+    }
+    @objc func exercisePickerDoneButtonTapped() {
+        exerciseTextField.resignFirstResponder() // Dismiss the picker
     }
     func openAddView(){
         self.addViewContainer.hideWithAnimation(hidden: false)
