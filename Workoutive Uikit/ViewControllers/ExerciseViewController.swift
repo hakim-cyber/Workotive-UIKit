@@ -28,12 +28,13 @@ class ExerciseViewController: UIViewController {
         
         
         pck.translatesAutoresizingMaskIntoConstraints = false
+        
        
         pck.tintColor = .openGreen
         pck.layer.backgroundColor = UIColor.clear.cgColor
         pck.delegate = self
         pck.dataSource = self
-    
+        
         
         return pck
     }()
@@ -61,6 +62,28 @@ class ExerciseViewController: UIViewController {
         btn.addTarget(self, action: #selector(addExerciseButtonTapped), for: .touchUpInside)
         return btn
     }()
+    private lazy var setsTextField:UITextField = {
+        let tf = UITextField()
+        
+        return tf
+    }()
+    private lazy var repsTextField:UITextField = {
+        let tf = UITextField()
+        
+        return tf
+    }()
+    private lazy var exerciseTextField:UITextField = {
+        let tf = UITextField()
+        tf.attributedPlaceholder = NSAttributedString(string: "Select Exercise",attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        tf.font = UIFont.systemFont(ofSize: 15)
+        tf.backgroundColor = .openGreen
+        tf.textColor = .white
+        tf.borderStyle = .line
+        
+        return tf
+    }()
+    
+    
     
     private lazy var exercisesTableView:UITableView = {
         let tv = UITableView()
@@ -101,13 +124,17 @@ class ExerciseViewController: UIViewController {
     }
     func setupAddView(){
         self.view.addSubview(addViewContainer)
-        addViewContainer.addSubview(addExerciseButton)
-        addViewContainer.addSubview(exercisePicker)
+        self.addViewContainer.addSubview(addExerciseButton)
+        self.addViewContainer.addSubview(exerciseTextField)
         
         self.view.bringSubviewToFront(addViewContainer)
         
         self.addViewContainer.isHidden = true
+        
+        exerciseTextField.inputView = exercisePicker
+        
        
+        
         
         
         NSLayoutConstraint.activate([
@@ -121,11 +148,10 @@ class ExerciseViewController: UIViewController {
             addExerciseButton.centerXAnchor.constraint(equalTo: addViewContainer.centerXAnchor),
             addExerciseButton.bottomAnchor.constraint(equalTo: addViewContainer.bottomAnchor),
             
-            exercisePicker.widthAnchor.constraint(equalToConstant:  self.view.bounds.width * 0.50),
-            exercisePicker.heightAnchor.constraint(equalToConstant:   self.view.bounds.height * 0.12),
-            exercisePicker.centerXAnchor.constraint(equalTo: self.addViewContainer.centerXAnchor),
-            exercisePicker.topAnchor.constraint(equalTo: self.addViewContainer.safeAreaLayoutGuide.topAnchor),
-            exercisePicker.bottomAnchor.constraint(equalTo: self.addExerciseButton.topAnchor,constant: -8),
+            exerciseTextField.widthAnchor.constraint(equalToConstant: self.view.bounds.width * 0.55),
+           
+            exerciseTextField.centerXAnchor.constraint(equalTo: self.addViewContainer.centerXAnchor),
+            exerciseTextField.centerYAnchor.constraint(equalTo: self.addViewContainer.centerYAnchor)
             
         ])
     
