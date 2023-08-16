@@ -11,6 +11,13 @@
 		0805D3492A80F49000262718 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D3482A80F49000262718 /* Structs.swift */; };
 		0805D34B2A80F75800262718 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D34A2A80F75800262718 /* DayTableViewCell.swift */; };
 		0805D34E2A81615500262718 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0805D34D2A81615500262718 /* Colors.swift */; };
+		083A16B42A8CCACD002A30D1 /* CashedMuscle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16AC2A8CCACD002A30D1 /* CashedMuscle+CoreDataClass.swift */; };
+		083A16B52A8CCACD002A30D1 /* CashedExcercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16AD2A8CCACD002A30D1 /* CashedExcercise+CoreDataProperties.swift */; };
+		083A16B62A8CCACD002A30D1 /* DaysDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 083A16AE2A8CCACD002A30D1 /* DaysDataModel.xcdatamodeld */; };
+		083A16B72A8CCACD002A30D1 /* CashedDay+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16B02A8CCACD002A30D1 /* CashedDay+CoreDataClass.swift */; };
+		083A16B82A8CCACD002A30D1 /* CashedDay+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16B12A8CCACD002A30D1 /* CashedDay+CoreDataProperties.swift */; };
+		083A16B92A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16B22A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift */; };
+		083A16BA2A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16B32A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift */; };
 		083F05002A8BB36A007AFE51 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F04FF2A8BB36A007AFE51 /* ExerciseViewController.swift */; };
 		083F8E6F2A841FFE00D9CE9D /* AddDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */; };
 		0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845E02D2A8281FC00B9356D /* AddViewController.swift */; };
@@ -28,6 +35,13 @@
 		0805D3482A80F49000262718 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		0805D34A2A80F75800262718 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		0805D34D2A81615500262718 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		083A16AC2A8CCACD002A30D1 /* CashedMuscle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedMuscle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		083A16AD2A8CCACD002A30D1 /* CashedExcercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedExcercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		083A16AF2A8CCACD002A30D1 /* DaysDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DaysDataModel.xcdatamodel; sourceTree = "<group>"; };
+		083A16B02A8CCACD002A30D1 /* CashedDay+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedDay+CoreDataClass.swift"; sourceTree = "<group>"; };
+		083A16B12A8CCACD002A30D1 /* CashedDay+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedDay+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		083A16B22A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedExcercise+CoreDataClass.swift"; sourceTree = "<group>"; };
+		083A16B32A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedMuscle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		083F04FF2A8BB36A007AFE51 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDayViewModel.swift; sourceTree = "<group>"; };
 		0845E02D2A8281FC00B9356D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +96,20 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		083A16AB2A8CCA44002A30D1 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				083A16B02A8CCACD002A30D1 /* CashedDay+CoreDataClass.swift */,
+				083A16B12A8CCACD002A30D1 /* CashedDay+CoreDataProperties.swift */,
+				083A16B22A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift */,
+				083A16AD2A8CCACD002A30D1 /* CashedExcercise+CoreDataProperties.swift */,
+				083A16AC2A8CCACD002A30D1 /* CashedMuscle+CoreDataClass.swift */,
+				083A16B32A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift */,
+				083A16AE2A8CCACD002A30D1 /* DaysDataModel.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		08DFD9282A802E9A007C596E = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +132,7 @@
 				08DFD9342A802E9A007C596E /* AppDelegate.swift */,
 				0805D3482A80F49000262718 /* Structs.swift */,
 				08DFD9362A802E9A007C596E /* SceneDelegate.swift */,
+				083A16AB2A8CCA44002A30D1 /* Core Data */,
 				0805D34C2A80F75F00262718 /* Views */,
 				0805D3452A80F24400262718 /* ViewModels */,
 				0805D3442A80E5CF00262718 /* ViewControllers */,
@@ -185,15 +214,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				083A16B42A8CCACD002A30D1 /* CashedMuscle+CoreDataClass.swift in Sources */,
 				08ED33D02A86D1C900EABE44 /* MuscleViewController.swift in Sources */,
+				083A16B72A8CCACD002A30D1 /* CashedDay+CoreDataClass.swift in Sources */,
 				08DFD9392A802E9A007C596E /* MainViewController.swift in Sources */,
 				0805D3472A80F27000262718 /* DataManager.swift in Sources */,
 				0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */,
 				085856282A8A9FD100AB7292 /* MuscleTableViewCell.swift in Sources */,
+				083A16B92A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift in Sources */,
+				083A16B82A8CCACD002A30D1 /* CashedDay+CoreDataProperties.swift in Sources */,
+				083A16B62A8CCACD002A30D1 /* DaysDataModel.xcdatamodeld in Sources */,
 				0805D3492A80F49000262718 /* Structs.swift in Sources */,
 				0805D34E2A81615500262718 /* Colors.swift in Sources */,
 				08DFD9352A802E9A007C596E /* AppDelegate.swift in Sources */,
+				083A16B52A8CCACD002A30D1 /* CashedExcercise+CoreDataProperties.swift in Sources */,
 				083F8E6F2A841FFE00D9CE9D /* AddDayViewModel.swift in Sources */,
+				083A16BA2A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift in Sources */,
 				0805D34B2A80F75800262718 /* DayTableViewCell.swift in Sources */,
 				083F05002A8BB36A007AFE51 /* ExerciseViewController.swift in Sources */,
 				08DFD9372A802E9A007C596E /* SceneDelegate.swift in Sources */,
@@ -412,6 +448,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		083A16AE2A8CCACD002A30D1 /* DaysDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				083A16AF2A8CCACD002A30D1 /* DaysDataModel.xcdatamodel */,
+			);
+			currentVersion = 083A16AF2A8CCACD002A30D1 /* DaysDataModel.xcdatamodel */;
+			path = DaysDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 08DFD9292A802E9A007C596E /* Project object */;
 }

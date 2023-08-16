@@ -45,6 +45,12 @@ class DataManager:ObservableObject{
             self.days[index].muscles.removeAll(where: {$0.id == muscle.id})
         }
     }
+    func loadAllExercisesFromCoreData(){
+        
+    }
+    func saveAllExercisesToCoreData(){
+        
+    }
     func loadAllExcercises(for bodyPart:String,completion:@escaping([ExerciseApi])-> Void){
         let saveKeyExercises = "exercises"
         var exercises = [ExerciseApi]()
