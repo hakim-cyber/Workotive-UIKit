@@ -192,7 +192,7 @@ class ExerciseViewController: UIViewController {
                     let containsExercise = self.selectedMuscle?.exercises.contains { selectedExercise in
                         return selectedExercise.id == exercise.id
                     }
-                    print("Exercise: \(exercise.name), Contains: \(containsExercise)")
+                   
                     return containsExercise == false
                 }
                 
@@ -209,7 +209,7 @@ class ExerciseViewController: UIViewController {
             let containsExercise = self.selectedMuscle?.exercises.contains { selectedExercise in
                 return selectedExercise.id == exercise.id
             }
-            print("Exercise: \(exercise.name), Contains: \(containsExercise)")
+           
             return containsExercise == false
         }
         self.exercisesTableView.reloadData()

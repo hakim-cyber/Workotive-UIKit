@@ -343,7 +343,7 @@ class DataManager:ObservableObject{
             }
             
             self.days[indexOfDay].muscles[indexOfMuscle].exercises.removeAll { $0.id == exerciseID }
-        print("deleting in \(self.days[indexOfDay])")
+      
             
             Task {
                 await updateDay(day: self.days[indexOfDay])
