@@ -145,17 +145,12 @@ class ExerciseViewController: UIViewController {
         tv.estimatedRowHeight = UIScreen.main.bounds.height / 7
         tv.separatorStyle = .none
         tv.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tv.allowsSelection = true
+        tv.allowsSelection = false
         tv.isScrollEnabled = true
-        
+        tv.register(ExerciseTableViewCell.self, forCellReuseIdentifier: ExerciseTableViewCell.cellId)
+        tv.dataSource = self
+        tv.delegate = self
         return tv
-    }()
-    private lazy var lbl:UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "\(self.selectedMuscle?.exercises.count)"
-        
-        return lbl
     }()
     
     // Setup
@@ -171,15 +166,20 @@ class ExerciseViewController: UIViewController {
     }
     func setup(){
        
-        setupAddView()
+       
        
         
        
-        self.view.addSubview(lbl)
+        self.view.addSubview(exercisesTableView)
+        
+        self.exercisesTableView.contentInset = UIEdgeInsets(top: 50,left: 0,bottom: 35,right: 0)
         NSLayoutConstraint.activate([
-            lbl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            lbl.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+            exercisesTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            exercisesTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            exercisesTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            exercisesTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
         ])
+        setupAddView()
        
     }
     let dm = DataManager()
@@ -197,7 +197,7 @@ class ExerciseViewController: UIViewController {
         
     }
     func refreshAllData(){
-        self.lbl.text =  "\(self.selectedMuscle?.exercises.count)"
+        self.exercisesTableView.reloadData()
     }
     func setupAddView(){
         self.view.addSubview(addViewContainer)
@@ -248,7 +248,7 @@ class ExerciseViewController: UIViewController {
             setsAndRepsTextField.heightAnchor.constraint(equalToConstant: 33),
            
             setsAndRepsTextField.centerXAnchor.constraint(equalTo: self.addViewContainer.centerXAnchor),
-            setsAndRepsTextField.topAnchor.constraint(equalTo: self.exerciseTextField.bottomAnchor,constant: 20)
+            setsAndRepsTextField.topAnchor.constraint(equalTo: self.exerciseTextField.bottomAnchor,constant: 20),
             
         ])
     
@@ -391,4 +391,49 @@ extension ExerciseViewController:UIPickerViewDelegate,UIPickerViewDataSource{
     }
     
    
+}
+
+
+extension ExerciseViewController:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return selectedMuscle?.exercises.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: ExerciseTableViewCell.cellId, for: indexPath) as! ExerciseTableViewCell
+        cell.selectionStyle = .none
+        cell.userInteractionEnabledWhileDragging = true
+        cell.isUserInteractionEnabled = true
+        cell.backgroundColor = .clear
+        if let exercise = selectedMuscle?.exercises[indexPath.row]{
+            cell.configure(exercise:  exercise )
+            
+        }
+       
+              return cell
+       
+             
+      
+    }
+
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "") { action, voew, completHandler in
+            print("Delete \(indexPath.row)")
+            
+            
+            if let exercise = self.selectedMuscle?.exercises[indexPath.row]{
+               // delete
+                
+            }
+            
+            completHandler(true)
+        }
+        delete.backgroundColor = .black
+        delete.image = UIImage(systemName: "trash.fill")
+        
+    
+        
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
 }
