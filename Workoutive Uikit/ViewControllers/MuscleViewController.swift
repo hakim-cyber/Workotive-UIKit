@@ -206,7 +206,9 @@ class MuscleViewController: UIViewController {
         self.musclesTableView.reloadData()
     }
     @objc func playButtonTapped(){
-        
+        let vc = PlayViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }
 
