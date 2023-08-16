@@ -187,8 +187,16 @@ class ExerciseViewController: UIViewController {
     func loadExercises(complete:@escaping ()->Void){
         
             dm.loadAllExcercises(for: self.selectedMuscle!.muscle) { exercises in
-                self.exercises = exercises
-                if exercises.count > 0{
+                
+                self.exercises = exercises.filter { exercise in
+                    let containsExercise = self.selectedMuscle?.exercises.contains { selectedExercise in
+                        return selectedExercise.id == exercise.id
+                    }
+                    print("Exercise: \(exercise.name), Contains: \(containsExercise)")
+                    return containsExercise == false
+                }
+                
+                if self.exercises.count > 0{
                     complete()
                 }
                 
@@ -197,7 +205,15 @@ class ExerciseViewController: UIViewController {
         
     }
     func refreshAllData(){
+        self.exercises = exercises.filter { exercise in
+            let containsExercise = self.selectedMuscle?.exercises.contains { selectedExercise in
+                return selectedExercise.id == exercise.id
+            }
+            print("Exercise: \(exercise.name), Contains: \(containsExercise)")
+            return containsExercise == false
+        }
         self.exercisesTableView.reloadData()
+        self.exercisePicker.reloadAllComponents()
     }
     func setupAddView(){
         self.view.addSubview(addViewContainer)

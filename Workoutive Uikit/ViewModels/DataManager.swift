@@ -368,6 +368,7 @@ class DataManager:ObservableObject{
                 if let decoded = try?JSONDecoder().decode([ExerciseApi].self, from: data){
                     DispatchQueue.main.async {
                         exercises = decoded
+                        
                         completion(exercises.filter{$0.bodyPart == bodyPart})
                         print(exercises.first?.name)
                         if let encoded = try? JSONEncoder().encode(exercises){
