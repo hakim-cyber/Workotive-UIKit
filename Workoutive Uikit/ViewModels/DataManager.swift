@@ -332,8 +332,25 @@ class DataManager:ObservableObject{
             Task{
                 await updateDay(day: self.days[index])
             }
-           
+        
         }
+    }
+    func deleteExercise(muscleid:UUID,dayId:Int,exerciseID:String){
+        
+            guard let indexOfDay = self.days.firstIndex(where: { $0.id == dayId }),
+                  let indexOfMuscle = self.days[indexOfDay].muscles.firstIndex(where: { $0.id == muscleid }) else {
+                return // Exit if dayID or muscleID is not found
+            }
+            
+            self.days[indexOfDay].muscles[indexOfMuscle].exercises.removeAll { $0.id == exerciseID }
+        print("deleting in \(self.days[indexOfDay])")
+            
+            Task {
+                await updateDay(day: self.days[indexOfDay])
+            }
+        
+
+        
     }
     
     

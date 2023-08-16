@@ -132,6 +132,7 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
        
             print("selected")
             let vc = MuscleViewController()
+        var selectedDay = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
         vc.bind { event in
             switch event {
             case .newMuscle(let muscle):
@@ -146,11 +147,16 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate{
                 
                 vc.selectedDay = self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
                 vc.filterMuscles()
+            case .deleteExercise(let exercise,let  muscle):
+                self.dataManager.deleteExercise(muscleid: muscle.id, dayId: selectedDay.id, exerciseID: exercise.id)
+                self.daysTableView.reloadData()
+                vc.selectedDay = self.dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
+                vc.filterMuscles()
             }
           
         }
        
-            vc.selectedDay = dataManager.days.sorted(by: {$0.id < $1.id})[indexPath.row]
+            vc.selectedDay = selectedDay
         vc.filterMuscles()
             self.navigationController?.pushViewController(vc, animated: true)
             

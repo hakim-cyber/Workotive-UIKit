@@ -11,6 +11,7 @@ import UIKit
 enum MuscleViewEvents{
     case newMuscle(Muscle)
     case deleteMuscle(Muscle)
+    case deleteExercise(ExerciseApi,Muscle)
 }
 
 class MuscleViewController: UIViewController {
@@ -277,19 +278,21 @@ extension MuscleViewController:UITableViewDelegate,UITableViewDataSource{
             print("selected")
         
         let vc = ExerciseViewController()
+        var muscle = self.selectedDay?.muscles[indexPath.row]
         
-        vc.selectedMuscle = self.selectedDay?.muscles[indexPath.row]
+        vc.selectedMuscle = muscle
         
         vc.bind { event in
             switch event {
             case .new(let exercise):
-                var muscle = self.selectedDay?.muscles[indexPath.row]
+               
                 muscle?.exercises.append(exercise)
                 self.onEvent(.newMuscle(muscle!))
             case .delete(let exercise):
-                print("")
+                self.onEvent(.deleteExercise(exercise, muscle!))
             }
-            vc.selectedMuscle = self.selectedDay?.muscles[indexPath.row]
+            muscle = self.selectedDay?.muscles[indexPath.row]
+            vc.selectedMuscle = muscle
             vc.refreshAllData()
             
         }

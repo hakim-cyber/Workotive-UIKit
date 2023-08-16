@@ -440,7 +440,7 @@ extension ExerciseViewController:UITableViewDelegate,UITableViewDataSource{
             
             if let exercise = self.selectedMuscle?.exercises[indexPath.row]{
                // delete
-                
+                self.onEvent(.delete(exercise))
             }
             
             completHandler(true)
