@@ -23,10 +23,11 @@ class MainViewController: UIViewController {
         var addView = AddViewController()
        
         addView.bind{[weak self] day in
-           
-            self?.dataManager.addDays(day: day)
-            self?.daysTableView.reloadData()
-            
+            Task{
+                await self?.dataManager.addDays(day: day)
+                self?.daysTableView.reloadData()
+                
+            }
             
         }
         addView.setupViewModel(days: dataManager.days)

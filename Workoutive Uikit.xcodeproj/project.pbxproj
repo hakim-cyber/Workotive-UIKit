@@ -18,6 +18,7 @@
 		083A16B82A8CCACD002A30D1 /* CashedDay+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16B12A8CCACD002A30D1 /* CashedDay+CoreDataProperties.swift */; };
 		083A16B92A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16B22A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift */; };
 		083A16BA2A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16B32A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift */; };
+		083A16BC2A8CD0C3002A30D1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083A16BB2A8CD0C3002A30D1 /* DataController.swift */; };
 		083F05002A8BB36A007AFE51 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F04FF2A8BB36A007AFE51 /* ExerciseViewController.swift */; };
 		083F8E6F2A841FFE00D9CE9D /* AddDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */; };
 		0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845E02D2A8281FC00B9356D /* AddViewController.swift */; };
@@ -42,6 +43,7 @@
 		083A16B12A8CCACD002A30D1 /* CashedDay+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedDay+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		083A16B22A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedExcercise+CoreDataClass.swift"; sourceTree = "<group>"; };
 		083A16B32A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CashedMuscle+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		083A16BB2A8CD0C3002A30D1 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		083F04FF2A8BB36A007AFE51 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		083F8E6E2A841FFE00D9CE9D /* AddDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDayViewModel.swift; sourceTree = "<group>"; };
 		0845E02D2A8281FC00B9356D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				083A16AD2A8CCACD002A30D1 /* CashedExcercise+CoreDataProperties.swift */,
 				083A16AC2A8CCACD002A30D1 /* CashedMuscle+CoreDataClass.swift */,
 				083A16B32A8CCACD002A30D1 /* CashedMuscle+CoreDataProperties.swift */,
+				083A16BB2A8CD0C3002A30D1 /* DataController.swift */,
 				083A16AE2A8CCACD002A30D1 /* DaysDataModel.xcdatamodeld */,
 			);
 			path = "Core Data";
@@ -219,6 +222,7 @@
 				083A16B72A8CCACD002A30D1 /* CashedDay+CoreDataClass.swift in Sources */,
 				08DFD9392A802E9A007C596E /* MainViewController.swift in Sources */,
 				0805D3472A80F27000262718 /* DataManager.swift in Sources */,
+				083A16BC2A8CD0C3002A30D1 /* DataController.swift in Sources */,
 				0845E02E2A8281FC00B9356D /* AddViewController.swift in Sources */,
 				085856282A8A9FD100AB7292 /* MuscleTableViewCell.swift in Sources */,
 				083A16B92A8CCACD002A30D1 /* CashedExcercise+CoreDataClass.swift in Sources */,
