@@ -208,6 +208,7 @@ class MuscleViewController: UIViewController {
     @objc func playButtonTapped(){
         let vc = PlayViewController()
         vc.modalPresentationStyle = .fullScreen
+        vc.day = self.selectedDay
         self.present(vc, animated: true)
     }
 }

@@ -9,6 +9,10 @@ import UIKit
 
 class PlayViewController: UIViewController {
     
+    var day:Day?
+    
+    var excercisesIndex = 0
+    var setsCountRemaining = 4
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .openGreen
@@ -31,6 +35,7 @@ class PlayViewController: UIViewController {
         
         return btn
     }()
+    
     private lazy var playButton:UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -64,13 +69,46 @@ class PlayViewController: UIViewController {
         vw.layer.cornerRadius = 15
         return vw
     }()
+    private lazy var setsAndRepsText:UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 1
+        lbl.font = .monospacedSystemFont(ofSize: 33, weight: .bold
+        )
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.textAlignment = .center
+        lbl.textColor = .black
+        
+        
+        return lbl
+    }()
+    private lazy var currentExerciseText:UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 0
+        lbl.font = .monospacedSystemFont(ofSize: 38, weight: .bold)
+        lbl.adjustsFontSizeToFitWidth = true
+        
+        lbl.textAlignment = .center
+        lbl.textColor = .black
+        
+        
+        return lbl
+    }()
+   
     
     func setup(){
         setupNavigationHeader()
-        
+        if allExcercises.count > excercisesIndex{
+            let exercise = allExcercises[self.excercisesIndex]
+            setsAndRepsText.text = "\(Int(exercise.sets!))x\(Int(exercise.repeatCount!))"
+            currentExerciseText.text = "\(exercise.name.capitalized)"
+        }
         self.view.addSubview(controlContainerView)
+        self.view.addSubview(currentExerciseText)
         self.controlContainerView.addSubview(informationContainerView)
         self.controlContainerView.addSubview(playButton)
+        self.informationContainerView.addSubview(setsAndRepsText)
         NSLayoutConstraint.activate([
             controlContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,constant: 15),
             controlContainerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -78,12 +116,22 @@ class PlayViewController: UIViewController {
             controlContainerView.heightAnchor.constraint(equalToConstant: self.view.bounds.height / 2.4),
             
             informationContainerView.topAnchor.constraint(equalTo: self.controlContainerView.topAnchor,constant: 10),
-            informationContainerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -25),
-            informationContainerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 25),
-            informationContainerView.heightAnchor.constraint(equalToConstant: self.view.bounds.height / 2.4 / 4),
+            informationContainerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+           
+            informationContainerView.widthAnchor.constraint(equalToConstant: 150),
+            informationContainerView.heightAnchor.constraint(equalToConstant: 60),
             
             playButton.bottomAnchor.constraint(equalTo: self.controlContainerView.bottomAnchor, constant: -50),
             playButton.centerXAnchor.constraint(equalTo: self.controlContainerView.centerXAnchor),
+            
+            setsAndRepsText.centerYAnchor.constraint(equalTo: informationContainerView.centerYAnchor),
+            setsAndRepsText.centerXAnchor.constraint(equalTo: informationContainerView.centerXAnchor),
+            
+                      currentExerciseText.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            currentExerciseText.centerYAnchor.constraint(equalTo: self.view.centerYAnchor,constant: -self.view.bounds.height / 4),
+            currentExerciseText.widthAnchor.constraint(equalToConstant: self.view.bounds.width / 1.1)
+            
+            
         ])
     }
     func setupNavigationHeader(){
@@ -97,7 +145,76 @@ class PlayViewController: UIViewController {
         
         ])
     }
+    var estimatedTimeForWorkout: Int{
+        var setsCount = 0
+        for muscle in day!.muscles {
+            for excercise in muscle.exercises{
+                setsCount += excercise.sets!
+            }
+        }
+        
+        let estimatedTime = setsCount * 120 + (setsCount - 1) * 120
+        if estimatedTime > 0{
+            return estimatedTime
+        }else{
+            return 0
+        }
+    }
+    var allExcercises:[ExerciseApi]{
+        let muscles = day!.muscles
+        var excercises = [ExerciseApi]()
+        for muscle in muscles {
+            for excercise in muscle.exercises {
+                excercises.append(excercise)
+            }
+        }
+      
+        return excercises
+    }
+    var muscleWorkingNowIndex:Int{
+        if !day!.muscles.isEmpty && !allExcercises.isEmpty{
+            return day!.muscles.firstIndex(where: {($0.exercises.contains(self.allExcercises[excercisesIndex]))}) ?? 0
+        }else{
+            return 0
+        }
+        
+    }
     
+    var estimatedCalories:String  {
+        var estimatedInHours = Double(estimatedTimeForWorkout) / 3600
+        return String(format: "%.1f", estimatedInHours * 300)
+    }
+    func nextExcercise(){
+        let countOfExcercises = allExcercises.count
+      
+       
+        
+        print("before index \(excercisesIndex)")
+       
+            if (countOfExcercises) != excercisesIndex{
+                setsCountRemaining -= 1
+                if setsCountRemaining == 0 {
+                   
+                        if (countOfExcercises) != excercisesIndex + 1{
+                            excercisesIndex += 1
+                        }else{
+                          
+                           // end
+                        }
+                    
+                }
+                
+            }else{
+               
+                // end
+            }
+        print("After index \(excercisesIndex)")
+    }
+    var excercisesRemaining:Int{
+        let all = allExcercises.count
+        let nowOn = excercisesIndex + 1
+        return all - nowOn
+    }
     
     //Buttons
     @objc func backButtonTapped(){
