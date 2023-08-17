@@ -31,6 +31,21 @@ class PlayViewController: UIViewController {
         
         return btn
     }()
+    private lazy var playButton:UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 70, weight: .bold, scale: .default)
+               
+        let largeBoldX = UIImage(systemName: "play.circle", withConfiguration: largeConfig)
+
+        
+        btn.setImage(largeBoldX, for: .normal)
+        btn.tintColor = .openGreen
+        btn.addTarget(self, action: #selector(playBtnTapped), for: .touchUpInside)
+        
+        
+        return btn
+    }()
     private lazy var controlContainerView:UIView = {
         let vw = UIView()
         
@@ -41,18 +56,34 @@ class PlayViewController: UIViewController {
         
         return vw
     }()
+    private lazy var informationContainerView:UIView = {
+        let vw = UIView()
+        vw.translatesAutoresizingMaskIntoConstraints = false
+        vw.backgroundColor = .openGreen
+        vw.layer.cornerCurve = .continuous
+        vw.layer.cornerRadius = 15
+        return vw
+    }()
     
     func setup(){
         setupNavigationHeader()
         
         self.view.addSubview(controlContainerView)
+        self.controlContainerView.addSubview(informationContainerView)
+        self.controlContainerView.addSubview(playButton)
         NSLayoutConstraint.activate([
-            controlContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            controlContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,constant: 15),
             controlContainerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             controlContainerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),     
-            controlContainerView.heightAnchor.constraint(equalToConstant: self.view.bounds.height / 2.4)
-        
-        
+            controlContainerView.heightAnchor.constraint(equalToConstant: self.view.bounds.height / 2.4),
+            
+            informationContainerView.topAnchor.constraint(equalTo: self.controlContainerView.topAnchor,constant: 10),
+            informationContainerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -25),
+            informationContainerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 25),
+            informationContainerView.heightAnchor.constraint(equalToConstant: self.view.bounds.height / 2.4 / 4),
+            
+            playButton.bottomAnchor.constraint(equalTo: self.controlContainerView.bottomAnchor, constant: -50),
+            playButton.centerXAnchor.constraint(equalTo: self.controlContainerView.centerXAnchor),
         ])
     }
     func setupNavigationHeader(){
@@ -71,5 +102,8 @@ class PlayViewController: UIViewController {
     //Buttons
     @objc func backButtonTapped(){
         self.dismiss(animated: true)
+    }
+    @objc func playBtnTapped(){
+        
     }
 }
