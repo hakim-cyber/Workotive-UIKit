@@ -31,10 +31,29 @@ class PlayViewController: UIViewController {
         
         return btn
     }()
+    private lazy var controlContainerView:UIView = {
+        let vw = UIView()
+        
+        vw.translatesAutoresizingMaskIntoConstraints = false
+        vw.backgroundColor = .black
+        vw.layer.cornerCurve = .continuous
+        vw.layer.cornerRadius = 15
+        
+        return vw
+    }()
     
     func setup(){
         setupNavigationHeader()
         
+        self.view.addSubview(controlContainerView)
+        NSLayoutConstraint.activate([
+            controlContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            controlContainerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            controlContainerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),     
+            controlContainerView.heightAnchor.constraint(equalToConstant: self.view.bounds.height / 2.4)
+        
+        
+        ])
     }
     func setupNavigationHeader(){
         
