@@ -161,6 +161,7 @@ class MuscleViewController: UIViewController {
         btnAdd.tintColor = .openGreen
         btnPlay.tintColor = .openGreen
         
+       
         
         navigationItem.setRightBarButtonItems([btnAdd,btnPlay], animated: true)
         navigationController?.navigationBar.barTintColor = .clear
@@ -211,7 +212,9 @@ class MuscleViewController: UIViewController {
         vc.day = self.selectedDay
         self.present(vc, animated: true)
     }
+   
 }
+
 
 extension MuscleViewController:UIPickerViewDelegate,UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

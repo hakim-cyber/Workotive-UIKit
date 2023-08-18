@@ -12,6 +12,8 @@ class PlayViewController: UIViewController {
     var day:Day?
     
     var excercisesIndex = 0
+    
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +97,20 @@ class PlayViewController: UIViewController {
         
         return lbl
     }()
+    
+    private lazy var calorieBurnedText:UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 0
+        lbl.font = .monospacedSystemFont(ofSize: 20, weight: .bold)
+        lbl.adjustsFontSizeToFitWidth = true
+        
+        lbl.textAlignment = .center
+        lbl.textColor = .black
+        
+        
+        return lbl
+    }()
    
     
     func setup(){
@@ -136,12 +152,18 @@ class PlayViewController: UIViewController {
     }
     func setupNavigationHeader(){
         
-        self.view.addSubview(backBtn)
+        self.calorieBurnedText.text = "🔥" + self.estimatedCalories
         
+        self.view.addSubview(backBtn)
+        self.view.addSubview(calorieBurnedText)
+       
         NSLayoutConstraint.activate([
            
             backBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            backBtn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 27)
+            backBtn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 27),
+            
+            calorieBurnedText.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            calorieBurnedText.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -27)
         
         ])
     }
@@ -192,9 +214,21 @@ class PlayViewController: UIViewController {
             let exercise = allExcercises[self.excercisesIndex]
             setsAndRepsText.text = "\(Int(exercise.sets!))x\(Int(exercise.repeatCount!))"
             currentExerciseText.text = "\(exercise.name.capitalized)"
+            
+            let largeConfig = UIImage.SymbolConfiguration(pointSize: 70, weight: .bold, scale: .default)
+            let largeBoldX = UIImage(systemName: "play.circle", withConfiguration: largeConfig)
+            self.playButton.setImage(largeBoldX, for: .normal)
         }else{
             // end
+            self.excercisesIndex  = -1
+          
+            setsAndRepsText.text = "End 🎉"
+            currentExerciseText.text = "You Are Legend"
             
+            
+            let largeConfig = UIImage.SymbolConfiguration(pointSize: 70, weight: .bold, scale: .default)
+            let largeBoldX = UIImage(systemName: "repeat.circle", withConfiguration: largeConfig)
+            self.playButton.setImage(largeBoldX, for: .normal)
         }
         
     }
