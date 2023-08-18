@@ -12,7 +12,7 @@ class PlayViewController: UIViewController {
     var day:Day?
     
     var excercisesIndex = 0
-    var setsCountRemaining = 4
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .openGreen
@@ -181,34 +181,22 @@ class PlayViewController: UIViewController {
     }
     
     var estimatedCalories:String  {
-        var estimatedInHours = Double(estimatedTimeForWorkout) / 3600
+        let estimatedInHours = Double(estimatedTimeForWorkout) / 3600
         return String(format: "%.1f", estimatedInHours * 300)
     }
     func nextExcercise(){
         let countOfExcercises = allExcercises.count
-      
-       
+          
+        if countOfExcercises != self.excercisesIndex + 1{
+            self.excercisesIndex += 1
+            let exercise = allExcercises[self.excercisesIndex]
+            setsAndRepsText.text = "\(Int(exercise.sets!))x\(Int(exercise.repeatCount!))"
+            currentExerciseText.text = "\(exercise.name.capitalized)"
+        }else{
+            // end
+            
+        }
         
-        print("before index \(excercisesIndex)")
-       
-            if (countOfExcercises) != excercisesIndex{
-                setsCountRemaining -= 1
-                if setsCountRemaining == 0 {
-                   
-                        if (countOfExcercises) != excercisesIndex + 1{
-                            excercisesIndex += 1
-                        }else{
-                          
-                           // end
-                        }
-                    
-                }
-                
-            }else{
-               
-                // end
-            }
-        print("After index \(excercisesIndex)")
     }
     var excercisesRemaining:Int{
         let all = allExcercises.count
@@ -221,6 +209,6 @@ class PlayViewController: UIViewController {
         self.dismiss(animated: true)
     }
     @objc func playBtnTapped(){
-        
+        nextExcercise()
     }
 }
