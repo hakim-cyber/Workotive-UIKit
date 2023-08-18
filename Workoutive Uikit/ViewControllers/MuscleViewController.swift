@@ -166,7 +166,17 @@ class MuscleViewController: UIViewController {
         navigationItem.setRightBarButtonItems([btnAdd,btnPlay], animated: true)
         navigationController?.navigationBar.barTintColor = .clear
     }
-
+    var allExcercisesCount:Int{
+        let muscles = selectedDay!.muscles
+        var excercises = [ExerciseApi]()
+        for muscle in muscles {
+            for excercise in muscle.exercises {
+                excercises.append(excercise)
+            }
+        }
+      
+        return excercises.count
+    }
     
     
     
@@ -207,10 +217,12 @@ class MuscleViewController: UIViewController {
         self.musclesTableView.reloadData()
     }
     @objc func playButtonTapped(){
-        let vc = PlayViewController()
-        vc.modalPresentationStyle = .fullScreen
-        vc.day = self.selectedDay
-        self.present(vc, animated: true)
+        if allExcercisesCount > 0{
+            let vc = PlayViewController()
+            vc.modalPresentationStyle = .fullScreen
+            vc.day = self.selectedDay
+            self.present(vc, animated: true)
+        }
     }
    
 }

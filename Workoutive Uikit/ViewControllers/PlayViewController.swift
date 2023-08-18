@@ -223,7 +223,7 @@ class PlayViewController: UIViewController {
             self.excercisesIndex  = -1
           
             setsAndRepsText.text = "End 🎉"
-            currentExerciseText.text = "You Are Legend"
+            currentExerciseText.text = "You Are Legend 🏋️"
             
             
             let largeConfig = UIImage.SymbolConfiguration(pointSize: 70, weight: .bold, scale: .default)
